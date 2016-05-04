@@ -1,8 +1,8 @@
 package eu.over9000.cathode;
 
-import eu.over9000.cathode.endpoints.Channels;
-import eu.over9000.cathode.endpoints.Streams;
+import eu.over9000.cathode.endpoints.*;
 import eu.over9000.cathode.endpoints.implementations.ChannelsImpl;
+import eu.over9000.cathode.endpoints.implementations.IngestsImpl;
 import eu.over9000.cathode.endpoints.implementations.StreamsImpl;
 
 public class Twitch {
@@ -11,8 +11,15 @@ public class Twitch {
 	private final String clientID;
 	private final String authToken;
 
-	private final Channels channels;
-	private final Streams streams;
+	public final Channels channels;
+	public final Chat chat;
+	public final Feed feed;
+	public final Games games;
+	public final Ingests ingests;
+	public final Streams streams;
+	public final Teams teams;
+	public final Users users;
+	public final Videos videos;
 
 
 	public Twitch(final String clientID) {
@@ -26,7 +33,15 @@ public class Twitch {
 		final Dispatcher dispatcher = new Dispatcher(clientID, authToken);
 
 		channels = new ChannelsImpl(dispatcher);
+		chat = null;
+		feed = null;
+		games = null;
+		ingests = new IngestsImpl(dispatcher);
 		streams = new StreamsImpl(dispatcher);
+		teams = null;
+		users = null;
+		videos = null;
+
 	}
 
 	public String getClientID() {
@@ -35,14 +50,6 @@ public class Twitch {
 
 	public String getAuthToken() {
 		return authToken;
-	}
-
-	public Channels channels() {
-		return channels;
-	}
-
-	public Streams streams() {
-		return streams;
 	}
 
 }

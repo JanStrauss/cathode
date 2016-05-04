@@ -6,13 +6,13 @@ import eu.over9000.cathode.data.parameters.Pagination;
 
 import java.util.List;
 
-public class QueriedStreams implements PaginatedContainer<Stream> {
+public class StreamList implements PaginatedContainer<Stream> {
 
 	@SerializedName("_total")
 	private final long total;
 	private final List<Stream> streams;
 
-	public QueriedStreams(final long total, final List<Stream> streams) {
+	public StreamList(final long total, final List<Stream> streams) {
 		this.total = total;
 		this.streams = streams;
 	}

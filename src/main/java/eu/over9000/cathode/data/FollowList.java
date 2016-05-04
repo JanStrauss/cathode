@@ -6,7 +6,7 @@ import eu.over9000.cathode.data.parameters.Pagination;
 
 import java.util.List;
 
-public class Follows implements PaginatedContainer<Follow> {
+public class FollowList implements PaginatedContainer<Follow> {
 
 	@SerializedName("_total")
 	private final long total;
@@ -16,7 +16,7 @@ public class Follows implements PaginatedContainer<Follow> {
 	private final List<Follow> follows;
 
 
-	public Follows(final long total, final String cursor, final List<Follow> follows) {
+	public FollowList(final long total, final String cursor, final List<Follow> follows) {
 		this.total = total;
 		this.cursor = cursor;
 		this.follows = follows;

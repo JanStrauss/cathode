@@ -3,7 +3,7 @@ package eu.over9000.cathode.endpoints.implementations;
 import eu.over9000.cathode.Dispatcher;
 import eu.over9000.cathode.Response;
 import eu.over9000.cathode.data.Channel;
-import eu.over9000.cathode.data.Follows;
+import eu.over9000.cathode.data.FollowList;
 import eu.over9000.cathode.data.parameters.CursorPagination;
 import eu.over9000.cathode.endpoints.Channels;
 
@@ -24,7 +24,7 @@ public class ChannelsImpl extends AbstractEndpoint implements Channels {
 	}
 
 	@Override
-	public Response<Follows> getFollows(String channelName, CursorPagination pagination) {
-		return dispatcher.getAPIResponse(Follows.class, Channels.PATH + "/" + channelName + "/follows", pagination);
+	public Response<FollowList> getFollows(String channelName, CursorPagination pagination) {
+		return dispatcher.getAPIResponse(FollowList.class, Channels.PATH + "/" + channelName + "/follows", pagination);
 	}
 }

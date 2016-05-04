@@ -1,9 +1,9 @@
 package eu.over9000.cathode;
 
 import eu.over9000.cathode.data.Follow;
-import eu.over9000.cathode.data.Follows;
-import eu.over9000.cathode.data.QueriedStreams;
+import eu.over9000.cathode.data.FollowList;
 import eu.over9000.cathode.data.Stream;
+import eu.over9000.cathode.data.StreamList;
 import eu.over9000.cathode.data.parameters.CursorPagination;
 import eu.over9000.cathode.data.parameters.OffsetPagination;
 import eu.over9000.cathode.data.parameters.Pagination;
@@ -19,30 +19,35 @@ public class Main {
 
 		//twitch.channels.getChannel("sykpl3x").handle(System.out::println, Throwable::printStackTrace);
 		//twitch.channels.getChannel("forsenlol").handle(System.out::println, Throwable::printStackTrace);
-		//twitch.streams().getStream("forsenlol").handle(System.out::println, Throwable::printStackTrace);
+		//twitch.streams.getStream("forsenlol").handle(System.out::println, Throwable::printStackTrace);
 
 
 		//tryOffsetPagination(twitch);
-		tryCursorPagination(twitch);
+		//tryCursorPagination(twitch);
 
-
+		tryIngests(twitch);
 	}
 
-	private static void tryCursorPagination(Twitch twitch) {
+	private static void tryIngests(final Twitch twitch) {
+		twitch.ingests.getIngests().ifSuccess(ingestList -> ingestList.getIngests().forEach(System.out::println));
+	}
+
+
+	private static void tryCursorPagination(final Twitch twitch) {
 		final CursorPagination pagination = new CursorPagination(75);
 
-		final Supplier<Response<Follows>> responseSupplier = () -> twitch.channels().getFollows("oluwakanyins", pagination);
+		final Supplier<Response<FollowList>> responseSupplier = () -> twitch.channels.getFollows("oluwakanyins", pagination);
 
 		final Response<List<Follow>> q = Pagination.collectPaginated(pagination, responseSupplier);
 
 		q.handle(list -> list.forEach(follow -> System.out.println(follow.getUser().getDisplayName())), Throwable::printStackTrace);
 	}
 
-	private static void tryOffsetPagination(Twitch twitch) {
+	private static void tryOffsetPagination(final Twitch twitch) {
 		final OffsetPagination pagination = new OffsetPagination(100);
 		final StreamsQuery query = new StreamsQuery("Dota 2", null, null, null);
 
-		final Supplier<Response<QueriedStreams>> responseSupplier = () -> twitch.streams().getQuery(query, pagination);
+		final Supplier<Response<StreamList>> responseSupplier = () -> twitch.streams.getStreams(query, pagination);
 
 		final Response<List<Stream>> q = Pagination.collectPaginated(pagination, responseSupplier);
 

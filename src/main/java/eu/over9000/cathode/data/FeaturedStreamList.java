@@ -2,11 +2,11 @@ package eu.over9000.cathode.data;
 
 import java.util.List;
 
-public class FeaturedStreams {
+public class FeaturedStreamList {
 
 	private final List<FeaturedStream> featured;
 
-	public FeaturedStreams(final List<FeaturedStream> featured) {
+	public FeaturedStreamList(final List<FeaturedStream> featured) {
 		this.featured = featured;
 	}
 
