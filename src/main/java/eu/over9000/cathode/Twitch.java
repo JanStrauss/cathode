@@ -2,6 +2,7 @@ package eu.over9000.cathode;
 
 import eu.over9000.cathode.endpoints.*;
 import eu.over9000.cathode.endpoints.implementations.ChannelsImpl;
+import eu.over9000.cathode.endpoints.implementations.ChatImpl;
 import eu.over9000.cathode.endpoints.implementations.IngestsImpl;
 import eu.over9000.cathode.endpoints.implementations.StreamsImpl;
 
@@ -33,7 +34,7 @@ public class Twitch {
 		final Dispatcher dispatcher = new Dispatcher(clientID, authToken);
 
 		channels = new ChannelsImpl(dispatcher);
-		chat = null;
+		chat = new ChatImpl(dispatcher);
 		feed = null;
 		games = null;
 		ingests = new IngestsImpl(dispatcher);

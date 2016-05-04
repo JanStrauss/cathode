@@ -50,8 +50,10 @@ public class Dispatcher {
 			final RequestBuilder requestBuilder = RequestBuilder.get(baseUrl);
 
 			for (final Parameter parameter : parameters) {
-				final List<NameValuePair> nameValuePairs = parameter.buildParamPairs();
-				nameValuePairs.forEach(requestBuilder::addParameter);
+				if (parameter != null) {
+					final List<NameValuePair> nameValuePairs = parameter.buildParamPairs();
+					nameValuePairs.forEach(requestBuilder::addParameter);
+				}
 			}
 
 			final HttpUriRequest request = requestBuilder.build();
