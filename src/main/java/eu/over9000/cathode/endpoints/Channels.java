@@ -1,42 +1,45 @@
 package eu.over9000.cathode.endpoints;
 
 import eu.over9000.cathode.Result;
-import eu.over9000.cathode.data.Channel;
-import eu.over9000.cathode.data.FollowList;
+import eu.over9000.cathode.data.*;
+import eu.over9000.cathode.data.parameters.ChannelVideoOptions;
 import eu.over9000.cathode.data.parameters.CursorPagination;
+import eu.over9000.cathode.data.parameters.Direction;
+import eu.over9000.cathode.data.parameters.OffsetPagination;
 
 /**
  * <pre>
- * /channel                                    GET
- * /channels/:channel                          GET
+ * /channel                                    GET			getChannel()
+ * /channels/:channel                          GET			getChannel(String channelName)
  * /channels/:channel                          PUT
  * /channels/:channel/commercial               POST
- * /channels/:channel/editors                  GET
- * /channels/:channel/follows                  GET
+ * /channels/:channel/editors                  GET			getEditors(String channelName);
+ * /channels/:channel/follows                  GET			getFollows(String channelName, CursorPagination pagination)
  * /channels/:channel/stream_key               DELETE
- * /channels/:channel/subscriptions            GET
- * /channels/:channel/subscriptions/:user      GET
- * /channels/:channel/teams                    GET
- * /channels/:channel/videos                   GET
+ * /channels/:channel/subscriptions            GET			getSubscriptions(String channelName, OffsetPagination pagination, Direction direction);
+ * /channels/:channel/subscriptions/:user      GET			getSubscription(String channelName, String userName);
+ * /channels/:channel/teams                    GET			getUsers(String channelName)
+ * /channels/:channel/videos                   GET			getVideos(String channelName, OffsetPagination pagination, ChannelVideoOptions options)
  * </pre>
  */
 public interface Channels {
 
 	String PATH = "channels";
 
-	//	GET 		/channel 						Get channel object
 	Result<Channel> getChannel();
 
-	//	GET 		/channels/:channel 				Get channel object
 	Result<Channel> getChannel(String channelName);
 
-	//	GET 		/channels/:channel/follows		Get channel's list of following users
-	Result<FollowList> getFollows(String channelName, CursorPagination pagination);
+	Result<FollowList> getFollows(String channelName, CursorPagination pagination, Direction direction);
 
-	//	GET 		/channels/:channel/videos		Get channel's list of videos
-	//	GET 		/channels/:channel/editors		Get channel's list of editors
-	//	PUT 		/channels/:channel				Update channel object
-	//	DELETE 		/channels/:channel/stream_key	Reset channel's stream key
-	//	POST 		/channels/:channel/commercial	Start a commercial on channel
-	//	GET 		/channels/:channel/teams		Get list of teams channel belongs to
+	Result<TeamList> getTeams(String channelName);
+
+	Result<VideoList> getVideos(String channelName, OffsetPagination pagination, ChannelVideoOptions options);
+
+	Result<UserList> getEditors(String channelName);
+
+	Result<SubscriptionList> getSubscriptions(String channelName, OffsetPagination pagination, Direction direction);
+
+	Result<Subscription> getSubscription(String channelName, String userName);
+
 }

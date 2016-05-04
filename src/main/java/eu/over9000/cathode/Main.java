@@ -36,7 +36,7 @@ public class Main {
 	private static void tryCursorPagination(final Twitch twitch) {
 		final CursorPagination pagination = new CursorPagination(75);
 
-		final Supplier<Result<FollowList>> responseSupplier = () -> twitch.channels.getFollows("oluwakanyins", pagination);
+		final Supplier<Result<FollowList>> responseSupplier = () -> twitch.channels.getFollows("oluwakanyins", pagination, null);
 
 		final Result<List<Follow>> q = Pagination.collectPaginated(pagination, responseSupplier);
 

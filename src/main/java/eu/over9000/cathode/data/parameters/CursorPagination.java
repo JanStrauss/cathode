@@ -12,10 +12,6 @@ import java.util.List;
  */
 public class CursorPagination extends Pagination {
 
-	enum Direction {ASC, DESC}
-
-	private Direction direction = Direction.DESC;
-
 	private String cursor = "";
 
 	public CursorPagination() {
@@ -23,15 +19,6 @@ public class CursorPagination extends Pagination {
 
 	public CursorPagination(final long limit) {
 		super(limit);
-	}
-
-	public CursorPagination(final Direction direction) {
-		this.direction = direction;
-	}
-
-	public CursorPagination(final long limit, final Direction direction) {
-		super(limit);
-		this.direction = direction;
 	}
 
 	@Override
@@ -46,7 +33,7 @@ public class CursorPagination extends Pagination {
 
 	@Override
 	public List<NameValuePair> buildParamPairs() {
-		return Arrays.asList(new BasicNameValuePair("limit", String.valueOf(limit)), new BasicNameValuePair("cursor", cursor), new BasicNameValuePair("direction", direction.name()));
+		return Arrays.asList(new BasicNameValuePair("limit", String.valueOf(limit)), new BasicNameValuePair("cursor", cursor));
 	}
 
 }

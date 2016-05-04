@@ -15,6 +15,9 @@ public class StreamsQuery implements Parameter {
 	private String clientId;
 	private StreamType streamType;
 
+	public StreamsQuery() {
+	}
+
 	public StreamsQuery(final String game, final List<String> channels, final String clientId, final StreamType streamType) {
 		this.game = game;
 		this.channels = channels;
