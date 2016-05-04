@@ -1,6 +1,6 @@
 package eu.over9000.cathode.endpoints;
 
-import eu.over9000.cathode.Response;
+import eu.over9000.cathode.Result;
 import eu.over9000.cathode.data.IngestList;
 
 /**
@@ -12,6 +12,6 @@ public interface Ingests {
 
 	String PATH = "ingests";
 
-	Response<IngestList> getIngests();
+	Result<IngestList> getIngests();
 
 }

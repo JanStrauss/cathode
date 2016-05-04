@@ -40,8 +40,4 @@ public class OffsetPagination extends Pagination {
 		return Arrays.asList(new BasicNameValuePair("limit", String.valueOf(limit)), new BasicNameValuePair("offset", String.valueOf(offset)));
 	}
 
-	@Override
-	public PaginationType getType() {
-		return PaginationType.OFFSET;
-	}
 }

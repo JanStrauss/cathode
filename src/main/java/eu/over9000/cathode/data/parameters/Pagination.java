@@ -1,6 +1,6 @@
 package eu.over9000.cathode.data.parameters;
 
-import eu.over9000.cathode.Response;
+import eu.over9000.cathode.Result;
 import eu.over9000.cathode.data.meta.PaginatedContainer;
 
 import java.util.ArrayList;
@@ -31,39 +31,33 @@ public abstract class Pagination implements Parameter {
 
 	public abstract void next(PaginatedContainer<?> currentItem);
 
-	public abstract PaginationType getType();
-
 	public long getLimit() {
 		return limit;
 	}
 
-	public static <Inner, Outer extends PaginatedContainer<Inner>> Response<List<Inner>> collectPaginated(final Pagination pagination, final Supplier<Response<Outer>> dataSource) {
+	public static <Inner, Outer extends PaginatedContainer<Inner>> Result<List<Inner>> collectPaginated(final Pagination pagination, final Supplier<Result<Outer>> dataSource) {
 
 		final List<Inner> result = new ArrayList<>();
 
 		Outer chunk;
 		do {
-			final Response<Outer> chunkResponse = dataSource.get();
+			final Result<Outer> chunkResult = dataSource.get();
 
-			if (chunkResponse.isSuccess()) {
-				chunk = chunkResponse.getResultRaw();
-
-				if (pagination.getType() != chunk.getPaginationType()) {
-					return new Response<>(new IllegalStateException("Trying to paginate a " + chunk.getPaginationType() + " container " + " with a " + pagination.getType() + " pagination."));
-				}
+			if (chunkResult.isOk()) {
+				chunk = chunkResult.getResultRaw();
 
 				if (!chunk.isEmpty()) {
 					result.addAll(chunk.getChunk());
 				}
 
 			} else {
-				return new Response<>(chunkResponse.getErrorRaw());
+				return new Result<>(chunkResult.getErrorRaw());
 			}
 
 			pagination.next(chunk);
 
 		} while (pagination.hasMore(chunk));
 
-		return new Response<>(result);
+		return new Result<>(result);
 	}
 }

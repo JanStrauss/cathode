@@ -1,6 +1,6 @@
 package eu.over9000.cathode.endpoints;
 
-import eu.over9000.cathode.Response;
+import eu.over9000.cathode.Result;
 import eu.over9000.cathode.data.Channel;
 import eu.over9000.cathode.data.FollowList;
 import eu.over9000.cathode.data.parameters.CursorPagination;
@@ -25,13 +25,13 @@ public interface Channels {
 	String PATH = "channels";
 
 	//	GET 		/channel 						Get channel object
-	Response<Channel> getChannel();
+	Result<Channel> getChannel();
 
 	//	GET 		/channels/:channel 				Get channel object
-	Response<Channel> getChannel(String channelName);
+	Result<Channel> getChannel(String channelName);
 
 	//	GET 		/channels/:channel/follows		Get channel's list of following users
-	Response<FollowList> getFollows(String channelName, CursorPagination pagination);
+	Result<FollowList> getFollows(String channelName, CursorPagination pagination);
 
 	//	GET 		/channels/:channel/videos		Get channel's list of videos
 	//	GET 		/channels/:channel/editors		Get channel's list of editors

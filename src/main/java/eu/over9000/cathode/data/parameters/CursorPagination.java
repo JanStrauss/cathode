@@ -49,8 +49,4 @@ public class CursorPagination extends Pagination {
 		return Arrays.asList(new BasicNameValuePair("limit", String.valueOf(limit)), new BasicNameValuePair("cursor", cursor), new BasicNameValuePair("direction", direction.name()));
 	}
 
-	@Override
-	public PaginationType getType() {
-		return PaginationType.CURSOR;
-	}
 }

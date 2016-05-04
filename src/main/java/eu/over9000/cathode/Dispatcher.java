@@ -43,7 +43,7 @@ public class Dispatcher {
 		HTTP_CLIENT = HttpClients.custom().setDefaultHeaders(headers).setConnectionManager(connectionManager).build();
 	}
 
-	public <ResponseType> Response<ResponseType> getAPIResponse(final Class<ResponseType> resultClass, final String path, final Parameter... parameters) {
+	public <ResponseType> Result<ResponseType> getAPIResponse(final Class<ResponseType> resultClass, final String path, final Parameter... parameters) {
 		try {
 			final String baseUrl = String.join("/", Twitch.API_BASE_URL, path);
 
@@ -61,9 +61,9 @@ public class Dispatcher {
 
 			final ResponseType objResponse = GSON.fromJson(strResponse, resultClass);
 
-			return new Response<>(objResponse);
+			return new Result<>(objResponse);
 		} catch (final IOException e) {
-			return new Response<>(e);
+			return new Result<>(e);
 		}
 	}
 }

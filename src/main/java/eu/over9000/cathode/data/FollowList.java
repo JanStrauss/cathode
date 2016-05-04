@@ -2,7 +2,6 @@ package eu.over9000.cathode.data;
 
 import com.google.gson.annotations.SerializedName;
 import eu.over9000.cathode.data.meta.PaginatedContainer;
-import eu.over9000.cathode.data.parameters.Pagination;
 
 import java.util.List;
 
@@ -50,10 +49,6 @@ public class FollowList implements PaginatedContainer<Follow> {
 		return follows;
 	}
 
-	@Override
-	public Pagination.PaginationType getPaginationType() {
-		return Pagination.PaginationType.CURSOR;
-	}
 
 	@Override
 	public boolean isEmpty() {

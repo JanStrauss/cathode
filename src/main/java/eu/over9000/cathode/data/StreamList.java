@@ -2,7 +2,6 @@ package eu.over9000.cathode.data;
 
 import com.google.gson.annotations.SerializedName;
 import eu.over9000.cathode.data.meta.PaginatedContainer;
-import eu.over9000.cathode.data.parameters.Pagination;
 
 import java.util.List;
 
@@ -41,11 +40,6 @@ public class StreamList implements PaginatedContainer<Stream> {
 	@Override
 	public String getCursor() {
 		return null;
-	}
-
-	@Override
-	public Pagination.PaginationType getPaginationType() {
-		return Pagination.PaginationType.OFFSET;
 	}
 
 	@Override
