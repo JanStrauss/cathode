@@ -1,5 +1,9 @@
 package eu.over9000.cathode.endpoints;
 
+import eu.over9000.cathode.Result;
+import eu.over9000.cathode.data.PostList;
+import eu.over9000.cathode.data.parameters.CursorPagination;
+
 /**
  * <pre>
  * /feed/:channel/posts                        GET
@@ -11,4 +15,9 @@ package eu.over9000.cathode.endpoints;
  * </pre>
  */
 public interface Feed {
+	String PATH = "path";
+	// TODO
+
+	Result<PostList> getPosts(String channelName, CursorPagination pagination);
+
 }

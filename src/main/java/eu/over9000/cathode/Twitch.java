@@ -1,10 +1,7 @@
 package eu.over9000.cathode;
 
 import eu.over9000.cathode.endpoints.*;
-import eu.over9000.cathode.endpoints.implementations.ChannelsImpl;
-import eu.over9000.cathode.endpoints.implementations.ChatImpl;
-import eu.over9000.cathode.endpoints.implementations.IngestsImpl;
-import eu.over9000.cathode.endpoints.implementations.StreamsImpl;
+import eu.over9000.cathode.endpoints.implementations.*;
 
 public class Twitch {
 	public static final String API_BASE_URL = "https://api.twitch.tv/kraken";
@@ -35,8 +32,8 @@ public class Twitch {
 
 		channels = new ChannelsImpl(dispatcher);
 		chat = new ChatImpl(dispatcher);
-		feed = null;
-		games = null;
+		feed = new FeedImpl(dispatcher);
+		games = new GamesImpl(dispatcher);
 		ingests = new IngestsImpl(dispatcher);
 		streams = new StreamsImpl(dispatcher);
 		teams = null;

@@ -1,13 +1,13 @@
 package eu.over9000.cathode.data;
 
-public class Preview {
+public class Image {
 
 	private final String small;
 	private final String medium;
 	private final String large;
 	private final String template;
 
-	public Preview(final String small, final String medium, final String large, final String template) {
+	public Image(final String small, final String medium, final String large, final String template) {
 		this.small = small;
 		this.medium = medium;
 		this.large = large;
@@ -16,7 +16,7 @@ public class Preview {
 
 	@Override
 	public String toString() {
-		return "Preview{" +
+		return "Image{" +
 				"small='" + small + '\'' +
 				", medium='" + medium + '\'' +
 				", large='" + large + '\'' +

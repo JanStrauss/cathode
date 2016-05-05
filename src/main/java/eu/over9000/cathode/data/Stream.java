@@ -13,9 +13,9 @@ public class Stream {
 	private final long delay;
 	private final boolean isPlaylist;
 	private final Channel channel;
-	private final Preview preview;
+	private final Image preview;
 
-	public Stream(final long id, final String game, final long viewers, final Date createdAt, final long videoHeight, final double averageFps, final long delay, final boolean isPlaylist, final Channel channel, final Preview preview) {
+	public Stream(final long id, final String game, final long viewers, final Date createdAt, final long videoHeight, final double averageFps, final long delay, final boolean isPlaylist, final Channel channel, final Image preview) {
 		this.id = id;
 		this.game = game;
 		this.viewers = viewers;
@@ -80,7 +80,7 @@ public class Stream {
 		return channel;
 	}
 
-	public Preview getPreview() {
+	public Image getPreview() {
 		return preview;
 	}
 }

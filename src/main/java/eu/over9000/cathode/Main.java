@@ -14,7 +14,7 @@ public class Main {
 	public static void main(final String[] args) {
 		final Twitch twitch = new Twitch("i2uu9j43ure9x7n4ojpgg4hvcnw6y91");
 
-		//twitch.channels.getChannel("sykpl3x").handle(System.out::println, Throwable::printStackTrace);
+		//twitch.channels.getChannel().print();
 		//twitch.channels.getChannel("forsenlol").handle(System.out::println, Throwable::printStackTrace);
 		//twitch.streams.getStream("forsenlol").handle(System.out::println, Throwable::printStackTrace);
 
@@ -24,19 +24,31 @@ public class Main {
 
 		//tryIngests(twitch);
 
-		tryChat(twitch);
+		//tryChat(twitch);
+
+		//tryFeed(twitch);
+
+		tryGames(twitch);
+	}
+
+	private static void tryGames(Twitch twitch) {
+		OffsetPagination p = new OffsetPagination(25);
+		twitch.games.getTopGames(p).ifOk(list -> list.getTop().forEach(game -> System.out.println(game.getGame().getName() + " = " + game.getViewers())));
+	}
+
+	private static void tryFeed(final Twitch twitch) {
+		final CursorPagination p = new CursorPagination(5);
+		twitch.feed.getPosts("djWHEAT", p).print();
 	}
 
 	private static void tryChat(final Twitch twitch) {
-		//twitch.chat.getBadges("forsenlol").handle(System.out::println, Throwable::printStackTrace);
-		//twitch.chat.getEmoticons("forsenlol").handle(System.out::println, Throwable::printStackTrace);
-		//twitch.chat.getEmoticons().handle(x -> {
-		//	System.out.println(x.getEmoticons().size());
-		//}, Throwable::printStackTrace);
-
-		twitch.chat.getEmoticonImages(new Emotesets("128", "77", "5993")).handle(x -> {
-			System.out.println(x);
+		twitch.chat.getBadges("forsenlol").handle(System.out::println, Throwable::printStackTrace);
+		twitch.chat.getEmoticons("forsenlol").handle(System.out::println, Throwable::printStackTrace);
+		twitch.chat.getEmoticons().handle(x -> {
+			System.out.println(x.getEmoticons().size());
 		}, Throwable::printStackTrace);
+
+		twitch.chat.getEmoticonImages(new Emotesets("128", "77", "5993")).handle(System.out::println, Throwable::printStackTrace);
 	}
 
 	private static void tryIngests(final Twitch twitch) {

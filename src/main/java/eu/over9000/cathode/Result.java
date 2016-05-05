@@ -44,6 +44,10 @@ public class Result<Type> {
 		ifError(callbackError);
 	}
 
+	public void print() {
+		handle(System.out::println, Throwable::printStackTrace);
+	}
+
 	public Optional<Type> asOptional() {
 		return Optional.ofNullable(value);
 	}
