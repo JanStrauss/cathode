@@ -2,20 +2,17 @@ package eu.over9000.cathode.endpoints;
 
 import eu.over9000.cathode.Result;
 import eu.over9000.cathode.data.*;
-import eu.over9000.cathode.data.parameters.ChannelVideoOptions;
-import eu.over9000.cathode.data.parameters.CursorPagination;
-import eu.over9000.cathode.data.parameters.Direction;
-import eu.over9000.cathode.data.parameters.OffsetPagination;
+import eu.over9000.cathode.data.parameters.*;
 
 /**
  * <pre>
  * /channel                                    GET			getChannel()
  * /channels/:channel                          GET			getChannel(String channelName)
- * /channels/:channel                          PUT			// TODO
- * /channels/:channel/commercial               POST			// TODO
+ * /channels/:channel                          PUT			putChannel(String channelName, ChannelOptions options);
+ * /channels/:channel/commercial               POST			postCommercial(CommercialOption options);
  * /channels/:channel/editors                  GET			getEditors(String channelName);
  * /channels/:channel/follows                  GET			getFollows(String channelName, CursorPagination pagination)
- * /channels/:channel/stream_key               DELETE		// TODO
+ * /channels/:channel/stream_key               DELETE		deleteStreamKey();
  * /channels/:channel/subscriptions            GET			getSubscriptions(String channelName, OffsetPagination pagination, Direction direction);
  * /channels/:channel/subscriptions/:user      GET			getSubscription(String channelName, String userName);
  * /channels/:channel/teams                    GET			getUsers(String channelName)
@@ -41,5 +38,12 @@ public interface Channels {
 	Result<SubscriptionList> getSubscriptions(String channelName, OffsetPagination pagination, Direction direction);
 
 	Result<Subscription> getSubscription(String channelName, String userName);
+
+	Result<Channel> deleteStreamKey(String channelName);
+
+	Result<Void> postCommercial(String channelName, CommercialOption options);
+
+	Result<Channel> putChannel(String channelName, ChannelOptions options);
+
 
 }

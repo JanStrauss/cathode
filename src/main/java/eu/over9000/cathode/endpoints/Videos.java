@@ -8,9 +8,9 @@ import eu.over9000.cathode.data.parameters.TopVideoOptions;
 
 /**
  * <pre>
- * /videos/:id                                 GET
- * /videos/followed                            GET
- * /videos/top                                 GET
+ * /videos/:id                                 GET			getVideo(String id);
+ * /videos/followed                            GET			getFollowed(OffsetPagination pagination);
+ * /videos/top                                 GET			getTopVideos(TopVideoOptions options, OffsetPagination pagination);
  * </pre>
  */
 public interface Videos {

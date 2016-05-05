@@ -23,10 +23,13 @@ public class Channel {
 	private final String videoBanner;
 	private final String profileBanner;
 	private final String url;
+	private final String email;
+	private final String streamKey;
 	private final long followers;
 	private final long views;
 
-	public Channel(final long id, final boolean mature, final boolean partner, final Date createdAt, final Date updatedAt, final String name, final String displayName, final String logo, final String status, final String game, final String broadcasterLanguage, final String language, final String banner, final String videoBanner, final String profileBanner, final String url, final long followers, final long views) {
+
+	public Channel(final long id, final boolean mature, final boolean partner, final Date createdAt, final Date updatedAt, final String name, final String displayName, final String logo, final String status, final String game, final String broadcasterLanguage, final String language, final String banner, final String videoBanner, final String profileBanner, final String url, final String email, final String streamKey, final long followers, final long views) {
 		this.id = id;
 		this.mature = mature;
 		this.partner = partner;
@@ -43,6 +46,8 @@ public class Channel {
 		this.videoBanner = videoBanner;
 		this.profileBanner = profileBanner;
 		this.url = url;
+		this.email = email;
+		this.streamKey = streamKey;
 		this.followers = followers;
 		this.views = views;
 	}
@@ -66,6 +71,8 @@ public class Channel {
 				", videoBanner='" + videoBanner + '\'' +
 				", profileBanner='" + profileBanner + '\'' +
 				", url='" + url + '\'' +
+				", email='" + email + '\'' +
+				", streamKey='" + streamKey + '\'' +
 				", followers=" + followers +
 				", views=" + views +
 				'}';
@@ -141,5 +148,13 @@ public class Channel {
 
 	public long getViews() {
 		return views;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public String getStreamKey() {
+		return streamKey;
 	}
 }

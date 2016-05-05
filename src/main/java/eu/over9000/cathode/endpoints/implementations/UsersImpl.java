@@ -6,6 +6,8 @@ import eu.over9000.cathode.data.*;
 import eu.over9000.cathode.data.parameters.OffsetPagination;
 import eu.over9000.cathode.data.parameters.PutFollowsOptions;
 import eu.over9000.cathode.endpoints.Users;
+import org.apache.http.entity.ContentType;
+import org.apache.http.entity.StringEntity;
 
 public class UsersImpl extends AbstractEndpoint implements Users {
 	public UsersImpl(final Dispatcher dispatcher) {
@@ -34,27 +36,27 @@ public class UsersImpl extends AbstractEndpoint implements Users {
 
 	@Override
 	public Result<Block> putBlock(final String userName, final String targetName) {
-		return dispatcher.performPut(Block.class, Users.PATH + "/" + userName + "/blocks/" + targetName);
+		return dispatcher.performPut(Block.class, Users.PATH + "/" + userName + "/blocks/" + targetName, null);
 	}
 
 	@Override
 	public Result<FollowList> getFollows(final String userName, final OffsetPagination pagination) {
-		return dispatcher.performGet(FollowList.class, Users.PATH + "/" + userName + "/follows", pagination);
+		return dispatcher.performGet(FollowList.class, Users.PATH + "/" + userName + "/follows/channels", pagination);
 	}
 
 	@Override
 	public Result<Follow> getFollows(final String userName, final String targetName) {
-		return dispatcher.performGet(Follow.class, Users.PATH + "/" + userName + "/follows/" + targetName);
+		return dispatcher.performGet(Follow.class, Users.PATH + "/" + userName + "/follows/channels/" + targetName);
 	}
 
 	@Override
 	public Result<Follow> putFollows(final String userName, final String targetName, final PutFollowsOptions options) {
-		return dispatcher.performPut(Follow.class, Users.PATH + "/" + userName + "/follows/" + targetName, options);
+		return dispatcher.performPut(Follow.class, Users.PATH + "/" + userName + "/follows/channels/" + targetName, new StringEntity(options.encode(), ContentType.APPLICATION_FORM_URLENCODED));
 	}
 
 	@Override
 	public Result<Void> deleteFollows(final String userName, final String targetName) {
-		return dispatcher.performDelete(Void.class, Users.PATH + "/" + userName + "/follows/" + targetName);
+		return dispatcher.performDelete(Void.class, Users.PATH + "/" + userName + "/follows/channels/" + targetName);
 	}
 
 	@Override

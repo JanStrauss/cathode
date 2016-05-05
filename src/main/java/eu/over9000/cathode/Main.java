@@ -14,14 +14,15 @@ public class Main {
 	public static void main(final String[] args) {
 		final Twitch twitch = new Twitch("i2uu9j43ure9x7n4ojpgg4hvcnw6y91");
 
-		//twitch.channels.getChannel().print();
-		//twitch.channels.getChannel("forsenlol").handle(System.out::println, Throwable::printStackTrace);
+
 		//twitch.streams.getStream("forsenlol").handle(System.out::println, Throwable::printStackTrace);
 
 
 		//tryOffsetPagination(twitch);
 		//System.out.println("##### ##### ##### ##### #####");
 		//tryCursorPagination(twitch);
+
+		tryChannels(twitch);
 
 		//tryIngests(twitch);
 
@@ -39,7 +40,14 @@ public class Main {
 
 		//tryUsers(twitch);
 
-		tryVideos(twitch);
+		//tryVideos(twitch);
+	}
+
+	private static void tryChannels(final Twitch twitch) {
+		twitch.channels.getChannel().print();
+		twitch.channels.getChannel("forsenlol").print();
+		twitch.channels.putChannel("sykpl3x", new ChannelOptions("lorem ipsum dolor", null)).print();
+		twitch.channels.putChannel("sykpl3x", new ChannelOptions(null, "Diablo 3")).print();
 	}
 
 	private static void tryVideos(final Twitch twitch) {
@@ -54,6 +62,7 @@ public class Main {
 		twitch.users.getBlocks("sykpl3x").print();
 		twitch.users.deleteBlock("sykpl3x", "teebeutel1222").print();
 		twitch.users.getBlocks("sykpl3x").print();
+		twitch.users.getFollows("sykpl3x", new OffsetPagination()).print();
 	}
 
 	private static void tryTeams(final Twitch twitch) {

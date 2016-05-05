@@ -7,8 +7,8 @@ import eu.over9000.cathode.data.parameters.OffsetPagination;
 
 /**
  * <pre>
- * /teams                                      GET
- * /teams/:team                                GET
+ * /teams                                      GET			getTeams(OffsetPagination pagination);
+ * /teams/:team                                GET			getTeam(String teamName);
  * </pre>
  */
 public interface Teams {

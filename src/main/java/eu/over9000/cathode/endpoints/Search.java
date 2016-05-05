@@ -11,9 +11,9 @@ import eu.over9000.cathode.data.parameters.SearchStreamsOptions;
 
 /**
  * <pre>
- * /search/channels                            GET
- * /search/games                               GET
- * /search/streams                             GET
+ * /search/channels                            GET			getChannels(SearchChannelOptions options, OffsetPagination pagination);
+ * /search/games                               GET			getGames(SearchGamesOptions options);
+ * /search/streams                             GET			getStreams(SearchStreamsOptions options, OffsetPagination pagination);
  * </pre>
  */
 public interface Search {

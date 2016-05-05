@@ -7,16 +7,16 @@ import eu.over9000.cathode.data.parameters.PutFollowsOptions;
 
 /**
  * <pre>
- * /user										GET
- * /users/:user									GET
- * /users/:user/blocks							GET
- * /users/:user/blocks/:target					DELETE
- * /users/:user/blocks/:target					PUT
- * /users/:user/follows/channels				GET
- * /users/:user/follows/channels/:target		PUT
- * /users/:user/follows/channels/:target		DELETE
- * /users/:user/follows/channels/:target		GET
- * /users/:user/subscriptions/:channel			GET
+ * /user										GET				getUser();
+ * /users/:user									GET				getUser(String userName);
+ * /users/:user/blocks							GET				getBlocks(String userName);
+ * /users/:user/blocks/:target					DELETE			deleteBlock(String userName, String targetName);
+ * /users/:user/blocks/:target					PUT				putBlock(String userName, String targetName);
+ * /users/:user/follows/channels				GET				getFollows(String userName, OffsetPagination pagination);
+ * /users/:user/follows/channels/:target		PUT				putFollows(String userName, String targetName, PutFollowsOptions options);
+ * /users/:user/follows/channels/:target		DELETE			deleteFollows(String userName, String targetName);
+ * /users/:user/follows/channels/:target		GET				getFollows(String userName, String targetName);
+ * /users/:user/subscriptions/:channel			GET				getSubscription(String userName, String channelName);
  * </pre>
  */
 public interface Users {

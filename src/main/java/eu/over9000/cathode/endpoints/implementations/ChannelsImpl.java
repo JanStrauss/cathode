@@ -3,11 +3,10 @@ package eu.over9000.cathode.endpoints.implementations;
 import eu.over9000.cathode.Dispatcher;
 import eu.over9000.cathode.Result;
 import eu.over9000.cathode.data.*;
-import eu.over9000.cathode.data.parameters.ChannelVideoOptions;
-import eu.over9000.cathode.data.parameters.CursorPagination;
-import eu.over9000.cathode.data.parameters.Direction;
-import eu.over9000.cathode.data.parameters.OffsetPagination;
+import eu.over9000.cathode.data.parameters.*;
 import eu.over9000.cathode.endpoints.Channels;
+import org.apache.http.entity.ContentType;
+import org.apache.http.entity.StringEntity;
 
 public class ChannelsImpl extends AbstractEndpoint implements Channels {
 
@@ -53,5 +52,20 @@ public class ChannelsImpl extends AbstractEndpoint implements Channels {
 	@Override
 	public Result<Subscription> getSubscription(final String channelName, final String userName) {
 		return dispatcher.performGet(Subscription.class, Channels.PATH + "/" + channelName + "/subscriptions/" + userName);
+	}
+
+	@Override
+	public Result<Channel> deleteStreamKey(final String channelName) {
+		return dispatcher.performDelete(Channel.class, Channels.PATH + "/" + channelName + "/stream_key");
+	}
+
+	@Override
+	public Result<Void> postCommercial(final String channelName, final CommercialOption options) {
+		return dispatcher.performPost(Void.class, Channels.PATH + "/" + channelName + "/commercial", new StringEntity(options.encode(), ContentType.APPLICATION_FORM_URLENCODED));
+	}
+
+	@Override
+	public Result<Channel> putChannel(final String channelName, final ChannelOptions options) {
+		return dispatcher.performPut(Channel.class, Channels.PATH + "/" + channelName, new StringEntity(options.encode(), ContentType.APPLICATION_JSON));
 	}
 }
