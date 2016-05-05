@@ -21,7 +21,6 @@ public class Twitch {
 	public final Users users;
 	public final Videos videos;
 
-
 	public Twitch(final String clientID) {
 		this(clientID, null);
 	}
@@ -41,9 +40,8 @@ public class Twitch {
 		search = new SearchImpl(dispatcher);
 		streams = new StreamsImpl(dispatcher);
 		teams = new TeamsImpl(dispatcher);
-		users = null;
-		videos = null;
-
+		users = new UsersImpl(dispatcher);
+		videos = new VideosImpl(dispatcher);
 	}
 
 	public String getClientID() {

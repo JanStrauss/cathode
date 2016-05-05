@@ -19,6 +19,10 @@ public class Direction implements Parameter {
 		this.direction = direction;
 	}
 
+	public Directions getDirection() {
+		return direction;
+	}
+
 	@Override
 	public List<NameValuePair> buildParamPairs() {
 		return Collections.singletonList(new BasicNameValuePair("direction", direction.name()));

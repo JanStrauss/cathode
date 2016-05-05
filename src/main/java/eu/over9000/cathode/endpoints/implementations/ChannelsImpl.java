@@ -17,41 +17,41 @@ public class ChannelsImpl extends AbstractEndpoint implements Channels {
 
 	@Override
 	public Result<Channel> getChannel() {
-		return dispatcher.getAPIResponse(Channel.class, "channel");
+		return dispatcher.performGet(Channel.class, "channel");
 	}
 
 	@Override
 	public Result<Channel> getChannel(final String channelName) {
-		return dispatcher.getAPIResponse(Channel.class, Channels.PATH + "/" + channelName);
+		return dispatcher.performGet(Channel.class, Channels.PATH + "/" + channelName);
 	}
 
 	@Override
 	public Result<FollowList> getFollows(final String channelName, final CursorPagination pagination, final Direction direction) {
-		return dispatcher.getAPIResponse(FollowList.class, Channels.PATH + "/" + channelName + "/follows", pagination, direction);
+		return dispatcher.performGet(FollowList.class, Channels.PATH + "/" + channelName + "/follows", pagination, direction);
 	}
 
 	@Override
 	public Result<TeamList> getTeams(final String channelName) {
-		return dispatcher.getAPIResponse(TeamList.class, Channels.PATH + "/" + channelName + "/teams");
+		return dispatcher.performGet(TeamList.class, Channels.PATH + "/" + channelName + "/teams");
 	}
 
 	@Override
 	public Result<VideoList> getVideos(final String channelName, final OffsetPagination pagination, final ChannelVideoOptions options) {
-		return dispatcher.getAPIResponse(VideoList.class, Channels.PATH + "/" + channelName + "/videos", pagination, options);
+		return dispatcher.performGet(VideoList.class, Channels.PATH + "/" + channelName + "/videos", pagination, options);
 	}
 
 	@Override
 	public Result<UserList> getEditors(final String channelName) {
-		return dispatcher.getAPIResponse(UserList.class, Channels.PATH + "/" + channelName + "/editors");
+		return dispatcher.performGet(UserList.class, Channels.PATH + "/" + channelName + "/editors");
 	}
 
 	@Override
 	public Result<SubscriptionList> getSubscriptions(final String channelName, final OffsetPagination pagination, final Direction direction) {
-		return dispatcher.getAPIResponse(SubscriptionList.class, Channels.PATH + "/" + channelName + "/subscriptions", pagination, direction);
+		return dispatcher.performGet(SubscriptionList.class, Channels.PATH + "/" + channelName + "/subscriptions", pagination, direction);
 	}
 
 	@Override
 	public Result<Subscription> getSubscription(final String channelName, final String userName) {
-		return dispatcher.getAPIResponse(Subscription.class, Channels.PATH + "/" + channelName + "/subscriptions/" + userName);
+		return dispatcher.performGet(Subscription.class, Channels.PATH + "/" + channelName + "/subscriptions/" + userName);
 	}
 }

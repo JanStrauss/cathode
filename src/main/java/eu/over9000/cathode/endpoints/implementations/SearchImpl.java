@@ -22,16 +22,16 @@ public class SearchImpl extends AbstractEndpoint implements Search {
 
 	@Override
 	public Result<ChannelList> getChannels(final SearchChannelOptions options, final OffsetPagination pagination) {
-		return dispatcher.getAPIResponse(ChannelList.class, Search.PATH + "/channels", options, pagination);
+		return dispatcher.performGet(ChannelList.class, Search.PATH + "/channels", options, pagination);
 	}
 
 	@Override
 	public Result<GameList> getGames(final SearchGamesOptions options) {
-		return dispatcher.getAPIResponse(GameList.class, Search.PATH + "/games", options);
+		return dispatcher.performGet(GameList.class, Search.PATH + "/games", options);
 	}
 
 	@Override
 	public Result<StreamList> getStreams(final SearchStreamsOptions options, final OffsetPagination pagination) {
-		return dispatcher.getAPIResponse(StreamList.class, Search.PATH + "/streams", options, pagination);
+		return dispatcher.performGet(StreamList.class, Search.PATH + "/streams", options, pagination);
 	}
 }

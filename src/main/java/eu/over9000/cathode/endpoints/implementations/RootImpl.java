@@ -3,7 +3,6 @@ package eu.over9000.cathode.endpoints.implementations;
 import eu.over9000.cathode.Dispatcher;
 import eu.over9000.cathode.Result;
 import eu.over9000.cathode.data.RootBox;
-import eu.over9000.cathode.data.Token;
 import eu.over9000.cathode.endpoints.Root;
 
 /**
@@ -17,6 +16,6 @@ public class RootImpl extends AbstractEndpoint implements Root {
 
 	@Override
 	public Result<RootBox> getRoot() {
-		return dispatcher.getAPIResponse(RootBox.class, Root.PATH);
+		return dispatcher.performGet(RootBox.class, Root.PATH);
 	}
 }

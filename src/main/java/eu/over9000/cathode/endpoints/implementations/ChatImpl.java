@@ -17,26 +17,26 @@ public class ChatImpl extends AbstractEndpoint implements Chat {
 
 	@Override
 	public Result<Badges> getBadges(final String channelName) {
-		return dispatcher.getAPIResponse(Badges.class, Chat.PATH + "/" + channelName + "/badges");
+		return dispatcher.performGet(Badges.class, Chat.PATH + "/" + channelName + "/badges");
 	}
 
 	@Override
 	public Result<ChannelEmoticonList> getEmoticons(final String channelName) {
-		return dispatcher.getAPIResponse(ChannelEmoticonList.class, Chat.PATH + "/" + channelName + "/emoticons");
+		return dispatcher.performGet(ChannelEmoticonList.class, Chat.PATH + "/" + channelName + "/emoticons");
 	}
 
 	@Override
 	public Result<EmoticonList> getEmoticons() {
-		return dispatcher.getAPIResponse(EmoticonList.class, Chat.PATH + "/emoticons");
+		return dispatcher.performGet(EmoticonList.class, Chat.PATH + "/emoticons");
 	}
 
 	@Override
 	public Result<EmoticonImages> getEmoticonImages(final Emotesets emotesets) {
-		return dispatcher.getAPIResponse(EmoticonImages.class, Chat.PATH + "/emoticon_images", emotesets);
+		return dispatcher.performGet(EmoticonImages.class, Chat.PATH + "/emoticon_images", emotesets);
 	}
 
 	@Override
 	public Result<EmoticonImages> getEmoticonImages() {
-		return dispatcher.getAPIResponse(EmoticonImages.class, Chat.PATH + "/emoticon_images");
+		return dispatcher.performGet(EmoticonImages.class, Chat.PATH + "/emoticon_images");
 	}
 }

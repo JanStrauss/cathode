@@ -17,11 +17,11 @@ public class TeamsImpl extends AbstractEndpoint implements Teams {
 
 	@Override
 	public Result<TeamList> getTeams(final OffsetPagination pagination) {
-		return dispatcher.getAPIResponse(TeamList.class, Teams.PATH, pagination);
+		return dispatcher.performGet(TeamList.class, Teams.PATH, pagination);
 	}
 
 	@Override
 	public Result<Team> getTeam(final String teamName) {
-		return dispatcher.getAPIResponse(Team.class, Teams.PATH + "/" + teamName);
+		return dispatcher.performGet(Team.class, Teams.PATH + "/" + teamName);
 	}
 }

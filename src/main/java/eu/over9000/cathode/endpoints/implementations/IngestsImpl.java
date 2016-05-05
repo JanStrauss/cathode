@@ -16,6 +16,6 @@ public class IngestsImpl extends AbstractEndpoint implements Ingests {
 
 	@Override
 	public Result<IngestList> getIngests() {
-		return dispatcher.getAPIResponse(IngestList.class, Ingests.PATH);
+		return dispatcher.performGet(IngestList.class, Ingests.PATH);
 	}
 }

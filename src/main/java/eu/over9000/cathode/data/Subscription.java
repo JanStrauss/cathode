@@ -4,19 +4,25 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.Date;
 
-/**
- * Created by Jan on 04.05.2016.
- */
 public class Subscription {
 
 	@SerializedName("_id")
 	private final String id;
 	private final User user;
+	private final Channel channel;
 	private final Date createdAt;
+
+	public Subscription(final String id, final Channel channel, final Date createdAt) {
+		this.id = id;
+		this.user = null;
+		this.channel = channel;
+		this.createdAt = createdAt;
+	}
 
 	public Subscription(final String id, final User user, final Date createdAt) {
 		this.id = id;
 		this.user = user;
+		this.channel = null;
 		this.createdAt = createdAt;
 	}
 
@@ -25,6 +31,7 @@ public class Subscription {
 		return "Subscription{" +
 				"id='" + id + '\'' +
 				", user=" + user +
+				", channel=" + channel +
 				", createdAt=" + createdAt +
 				'}';
 	}
@@ -39,5 +46,9 @@ public class Subscription {
 
 	public Date getCreatedAt() {
 		return createdAt;
+	}
+
+	public Channel getChannel() {
+		return channel;
 	}
 }

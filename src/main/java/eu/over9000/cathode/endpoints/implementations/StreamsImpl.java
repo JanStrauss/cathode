@@ -18,27 +18,27 @@ public class StreamsImpl extends AbstractEndpoint implements Streams {
 
 	@Override
 	public Result<StreamBox> getStream() {
-		return dispatcher.getAPIResponse(StreamBox.class, Streams.PATH);
+		return dispatcher.performGet(StreamBox.class, Streams.PATH);
 	}
 
 	@Override
 	public Result<StreamBox> getStream(final String channelName) {
-		return dispatcher.getAPIResponse(StreamBox.class, Streams.PATH + "/" + channelName);
+		return dispatcher.performGet(StreamBox.class, Streams.PATH + "/" + channelName);
 	}
 
 	@Override
 	public Result<StreamSummary> getSummary() {
-		return dispatcher.getAPIResponse(StreamSummary.class, Streams.PATH + "/summary");
+		return dispatcher.performGet(StreamSummary.class, Streams.PATH + "/summary");
 	}
 
 	@Override
 	public Result<FeaturedStreamList> getFeatured(final OffsetPagination pagination) {
-		return dispatcher.getAPIResponse(FeaturedStreamList.class, Streams.PATH + "/featured", pagination);
+		return dispatcher.performGet(FeaturedStreamList.class, Streams.PATH + "/featured", pagination);
 	}
 
 	@Override
 	public Result<StreamList> getStreams(final StreamsQuery query, final OffsetPagination pagination) {
-		return dispatcher.getAPIResponse(StreamList.class, Streams.PATH, query, pagination);
+		return dispatcher.performGet(StreamList.class, Streams.PATH, query, pagination);
 	}
 
 	@Override

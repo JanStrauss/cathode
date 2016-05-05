@@ -9,8 +9,7 @@ import org.apache.http.HttpHeaders;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpUriRequest;
-import org.apache.http.client.methods.RequestBuilder;
+import org.apache.http.client.methods.*;
 import org.apache.http.impl.client.BasicResponseHandler;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
@@ -43,23 +42,25 @@ public class Dispatcher {
 		HTTP_CLIENT = HttpClients.custom().setDefaultHeaders(headers).setConnectionManager(connectionManager).build();
 	}
 
-	public <ResponseType> Result<ResponseType> getAPIResponse(final Class<ResponseType> resultClass, final String path, final Parameter... parameters) {
+	public <ResponseType> Result<ResponseType> performGet(final Class<ResponseType> resultClass, final String path, final Parameter... parameters) {
+		return performInternal(HttpGet.METHOD_NAME, resultClass, path, parameters);
+	}
+
+	public <ResponseType> Result<ResponseType> performDelete(final Class<ResponseType> resultClass, final String path, final Parameter... parameters) {
+		return performInternal(HttpDelete.METHOD_NAME, resultClass, path, parameters);
+	}
+
+	public <ResponseType> Result<ResponseType> performPut(final Class<ResponseType> resultClass, final String path, final Parameter... parameters) {
+		return performInternal(HttpPut.METHOD_NAME, resultClass, path, parameters);
+	}
+
+	public <ResponseType> Result<ResponseType> performPost(final Class<ResponseType> resultClass, final String path, final Parameter... parameters) {
+		return performInternal(HttpPost.METHOD_NAME, resultClass, path, parameters);
+	}
+
+	private <ResponseType> Result<ResponseType> performInternal(final String method, final Class<ResponseType> resultClass, final String path, final Parameter... parameters) {
 		try {
-			final String baseUrl = String.join("/", Twitch.API_BASE_URL, path);
-
-			final RequestBuilder requestBuilder = RequestBuilder.get(baseUrl);
-
-			for (final Parameter parameter : parameters) {
-				if (parameter != null) {
-					final List<NameValuePair> nameValuePairs = parameter.buildParamPairs();
-					nameValuePairs.forEach(requestBuilder::addParameter);
-				}
-			}
-
-			final HttpUriRequest request = requestBuilder.build();
-
-			final HttpResponse httpResponse = HTTP_CLIENT.execute(request);
-			final String strResponse = RESPONSE_HANDLER.handleResponse(httpResponse);
+			final String strResponse = getResponseString(method, path, parameters);
 
 			final ResponseType objResponse = GSON.fromJson(strResponse, resultClass);
 
@@ -69,27 +70,41 @@ public class Dispatcher {
 		}
 	}
 
+	private String getResponseString(final String method, final String path, final Parameter... parameters) throws IOException {
+		final String baseUrl = handleUrl(path);
+
+		final RequestBuilder requestBuilder = RequestBuilder.create(method).setUri(baseUrl);
+
+		handleParameters(requestBuilder, parameters);
+
+		final HttpUriRequest request = requestBuilder.build();
+
+		final HttpResponse httpResponse = HTTP_CLIENT.execute(request);
+		return RESPONSE_HANDLER.handleResponse(httpResponse);
+	}
+
 
 	public String __DEBUG__getStringResponse(final String path) {
 		try {
 
-			final String baseUrl = String.join("/", Twitch.API_BASE_URL, path);
+			return getResponseString(HttpGet.METHOD_NAME, path);
 
-			final RequestBuilder requestBuilder = RequestBuilder.get(baseUrl);
-			final HttpUriRequest request = requestBuilder.build();
-
-			final HttpResponse httpResponse;
-
-			httpResponse = HTTP_CLIENT.execute(request);
-
-			final String strResponse;
-
-			strResponse = RESPONSE_HANDLER.handleResponse(httpResponse);
-
-			return strResponse;
 		} catch (final IOException e) {
 			e.printStackTrace();
 			return null;
+		}
+	}
+
+	private String handleUrl(final String path) {
+		return String.join("/", Twitch.API_BASE_URL, path);
+	}
+
+	private void handleParameters(final RequestBuilder requestBuilder, final Parameter[] parameters) {
+		for (final Parameter parameter : parameters) {
+			if (parameter != null) {
+				final List<NameValuePair> nameValuePairs = parameter.buildParamPairs();
+				nameValuePairs.forEach(requestBuilder::addParameter);
+			}
 		}
 	}
 }

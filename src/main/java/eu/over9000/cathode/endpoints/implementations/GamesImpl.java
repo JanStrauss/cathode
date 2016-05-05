@@ -16,6 +16,6 @@ public class GamesImpl extends AbstractEndpoint implements Games {
 
 	@Override
 	public Result<TopGameList> getTopGames(final OffsetPagination pagination) {
-		return dispatcher.getAPIResponse(TopGameList.class, Games.PATH + "/top", pagination);
+		return dispatcher.performGet(TopGameList.class, Games.PATH + "/top", pagination);
 	}
 }

@@ -11,11 +11,11 @@ import eu.over9000.cathode.data.parameters.OffsetPagination;
  * <pre>
  * /channel                                    GET			getChannel()
  * /channels/:channel                          GET			getChannel(String channelName)
- * /channels/:channel                          PUT
- * /channels/:channel/commercial               POST
+ * /channels/:channel                          PUT			// TODO
+ * /channels/:channel/commercial               POST			// TODO
  * /channels/:channel/editors                  GET			getEditors(String channelName);
  * /channels/:channel/follows                  GET			getFollows(String channelName, CursorPagination pagination)
- * /channels/:channel/stream_key               DELETE
+ * /channels/:channel/stream_key               DELETE		// TODO
  * /channels/:channel/subscriptions            GET			getSubscriptions(String channelName, OffsetPagination pagination, Direction direction);
  * /channels/:channel/subscriptions/:user      GET			getSubscription(String channelName, String userName);
  * /channels/:channel/teams                    GET			getUsers(String channelName)

@@ -20,6 +20,7 @@ public class Main {
 
 
 		//tryOffsetPagination(twitch);
+		//System.out.println("##### ##### ##### ##### #####");
 		//tryCursorPagination(twitch);
 
 		//tryIngests(twitch);
@@ -34,7 +35,25 @@ public class Main {
 
 		//trySearch(twitch);
 
-		tryTeams(twitch);
+		//tryTeams(twitch);
+
+		//tryUsers(twitch);
+
+		tryVideos(twitch);
+	}
+
+	private static void tryVideos(final Twitch twitch) {
+		twitch.videos.getFollowed(new OffsetPagination(10)).print();
+		twitch.videos.getTopVideos(new TopVideoOptions(), new OffsetPagination(10)).print();
+		twitch.videos.getVideo("v64403799").print();
+
+	}
+
+	private static void tryUsers(final Twitch twitch) {
+		twitch.users.putBlock("sykpl3x", "teebeutel1222").print();
+		twitch.users.getBlocks("sykpl3x").print();
+		twitch.users.deleteBlock("sykpl3x", "teebeutel1222").print();
+		twitch.users.getBlocks("sykpl3x").print();
 	}
 
 	private static void tryTeams(final Twitch twitch) {
@@ -84,7 +103,7 @@ public class Main {
 
 		final Supplier<Result<FollowList>> responseSupplier = () -> twitch.channels.getFollows("oluwakanyins", pagination, null);
 
-		final Result<List<Follow>> q = Pagination.collectPaginated(pagination, responseSupplier);
+		final Result<List<Follow>> q = PaginationUtility.collectPaginated(pagination, responseSupplier);
 
 		q.handle(list -> list.forEach(follow -> System.out.println(follow.getUser().getDisplayName())), Throwable::printStackTrace);
 	}
@@ -95,7 +114,7 @@ public class Main {
 
 		final Supplier<Result<StreamList>> responseSupplier = () -> twitch.streams.getStreams(query, pagination);
 
-		final Result<List<Stream>> q = Pagination.collectPaginated(pagination, responseSupplier);
+		final Result<List<Stream>> q = PaginationUtility.collectPaginated(pagination, responseSupplier);
 
 		q.handle(list -> list.forEach(stream -> System.out.println(stream.getChannel().getName())), Throwable::printStackTrace);
 	}

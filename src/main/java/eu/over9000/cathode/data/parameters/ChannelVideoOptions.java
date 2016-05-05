@@ -22,6 +22,14 @@ public class ChannelVideoOptions implements Parameter {
 		this.hls = hls;
 	}
 
+	public boolean isBroadcasts() {
+		return broadcasts;
+	}
+
+	public boolean isHls() {
+		return hls;
+	}
+
 	@Override
 	public List<NameValuePair> buildParamPairs() {
 		return Arrays.asList(new BasicNameValuePair("broadcasts", String.valueOf(broadcasts)), new BasicNameValuePair("hls", String.valueOf(hls)));

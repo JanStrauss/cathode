@@ -17,6 +17,6 @@ public class FeedImpl extends AbstractEndpoint implements Feed {
 
 	@Override
 	public Result<PostList> getPosts(final String channelName, final CursorPagination pagination) {
-		return dispatcher.getAPIResponse(PostList.class, Feed.PATH + "/" + channelName, pagination);
+		return dispatcher.performGet(PostList.class, Feed.PATH + "/" + channelName, pagination);
 	}
 }
