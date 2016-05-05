@@ -25,8 +25,4 @@ public abstract class Pagination implements Parameter {
 	public abstract boolean hasMore(PaginatedContainer<?> chunk);
 
 	public abstract void next(PaginatedContainer<?> currentItem);
-
-	public long getLimit() {
-		return limit;
-	}
 }

@@ -3,6 +3,8 @@ package eu.over9000.cathode.endpoints.implementations;
 import eu.over9000.cathode.Dispatcher;
 import eu.over9000.cathode.Result;
 import eu.over9000.cathode.data.*;
+import eu.over9000.cathode.data.parameters.Direction;
+import eu.over9000.cathode.data.parameters.GetFollowsSortBy;
 import eu.over9000.cathode.data.parameters.OffsetPagination;
 import eu.over9000.cathode.data.parameters.PutFollowsOptions;
 import eu.over9000.cathode.endpoints.Users;
@@ -40,8 +42,8 @@ public class UsersImpl extends AbstractEndpoint implements Users {
 	}
 
 	@Override
-	public Result<FollowList> getFollows(final String userName, final OffsetPagination pagination) {
-		return dispatcher.performGet(FollowList.class, Users.PATH + "/" + userName + "/follows/channels", pagination);
+	public Result<FollowList> getFollows(final String userName, final OffsetPagination pagination, final Direction direction, final GetFollowsSortBy sortBy) {
+		return dispatcher.performGet(FollowList.class, Users.PATH + "/" + userName + "/follows/channels", pagination, direction, sortBy);
 	}
 
 	@Override

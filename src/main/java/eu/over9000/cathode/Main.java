@@ -12,11 +12,9 @@ import java.util.function.Supplier;
 public class Main {
 
 	public static void main(final String[] args) {
-		final Twitch twitch = new Twitch("i2uu9j43ure9x7n4ojpgg4hvcnw6y91");
-
+		final Twitch twitch = new Twitch(args[0], args[1]);
 
 		//twitch.streams.getStream("forsenlol").handle(System.out::println, Throwable::printStackTrace);
-
 
 		//tryOffsetPagination(twitch);
 		//System.out.println("##### ##### ##### ##### #####");
@@ -62,7 +60,7 @@ public class Main {
 		twitch.users.getBlocks("sykpl3x").print();
 		twitch.users.deleteBlock("sykpl3x", "teebeutel1222").print();
 		twitch.users.getBlocks("sykpl3x").print();
-		twitch.users.getFollows("sykpl3x", new OffsetPagination()).print();
+		twitch.users.getFollows("sykpl3x", new OffsetPagination(), new Direction(), new GetFollowsSortBy()).print();
 	}
 
 	private static void tryTeams(final Twitch twitch) {

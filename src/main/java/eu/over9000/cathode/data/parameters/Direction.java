@@ -13,18 +13,20 @@ public class Direction implements Parameter {
 
 	private enum Directions {ASC, DESC;}
 
-	private Directions direction = Directions.DESC;
+	private Directions direction;
+
+	public Direction() {
+	}
 
 	public Direction(final Directions direction) {
 		this.direction = direction;
 	}
 
-	public Directions getDirection() {
-		return direction;
-	}
-
 	@Override
 	public List<NameValuePair> buildParamPairs() {
+		if (direction == null) {
+			return Collections.emptyList();
+		}
 		return Collections.singletonList(new BasicNameValuePair("direction", direction.name()));
 	}
 }

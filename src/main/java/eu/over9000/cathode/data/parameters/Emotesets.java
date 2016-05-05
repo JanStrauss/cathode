@@ -28,6 +28,9 @@ public class Emotesets implements Parameter {
 
 	@Override
 	public List<NameValuePair> buildParamPairs() {
+		if (emoteSets.isEmpty()) {
+			return Collections.emptyList();
+		}
 		return Collections.singletonList(new BasicNameValuePair("emotesets", String.join(",", emoteSets)));
 	}
 }

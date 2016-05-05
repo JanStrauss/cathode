@@ -13,12 +13,11 @@ public class SearchChannelOptions implements Parameter {
 		this.query = query;
 	}
 
-	public String getQuery() {
-		return query;
-	}
-
 	@Override
 	public List<NameValuePair> buildParamPairs() {
+		if (query == null) {
+			return Collections.emptyList();
+		}
 		return Collections.singletonList(new BasicNameValuePair("query", query));
 	}
 }

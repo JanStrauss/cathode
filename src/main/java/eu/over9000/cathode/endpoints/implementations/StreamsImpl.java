@@ -7,6 +7,7 @@ import eu.over9000.cathode.data.StreamBox;
 import eu.over9000.cathode.data.StreamList;
 import eu.over9000.cathode.data.StreamSummary;
 import eu.over9000.cathode.data.parameters.OffsetPagination;
+import eu.over9000.cathode.data.parameters.StreamTypeOption;
 import eu.over9000.cathode.data.parameters.StreamsQuery;
 import eu.over9000.cathode.endpoints.Streams;
 
@@ -42,9 +43,7 @@ public class StreamsImpl extends AbstractEndpoint implements Streams {
 	}
 
 	@Override
-	public Result<StreamList> getFollowed() {
-		return null;
+	public Result<StreamList> getFollowed(final OffsetPagination pagination, final StreamTypeOption streamType) {
+		return dispatcher.performGet(StreamList.class, Streams.PATH + "/followed", pagination, streamType);
 	}
-
-
 }

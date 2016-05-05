@@ -1,5 +1,5 @@
 #Cathode
-twitch.tv API wrapper written for Java 8 using on apache-httpclient and gson.
+[Twitch-API v3](https://github.com/justintv/Twitch-API) wrapper written for Java 8 using on apache-httpclient and gson.
 
 ## Status
 Covers the whole API except for the feed stuff, not really tested atm. Also barely any documentation, will hopefully change soon.

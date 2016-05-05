@@ -44,36 +44,4 @@ public class StreamsQuery implements Parameter {
 
 		return result;
 	}
-
-	public String getGame() {
-		return game;
-	}
-
-	public void setGame(final String game) {
-		this.game = game;
-	}
-
-	public List<String> getChannels() {
-		return channels;
-	}
-
-	public void setChannels(final List<String> channels) {
-		this.channels = channels;
-	}
-
-	public String getClientId() {
-		return clientId;
-	}
-
-	public void setClientId(final String clientId) {
-		this.clientId = clientId;
-	}
-
-	public StreamType getStreamType() {
-		return streamType;
-	}
-
-	public void setStreamType(final StreamType streamType) {
-		this.streamType = streamType;
-	}
 }

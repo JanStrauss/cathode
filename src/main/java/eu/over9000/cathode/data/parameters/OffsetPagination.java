@@ -32,7 +32,7 @@ public class OffsetPagination extends Pagination {
 
 	@Override
 	public void next(final PaginatedContainer<?> currentItem) {
-		offset += getLimit();
+		offset += limit;
 	}
 
 	@Override
