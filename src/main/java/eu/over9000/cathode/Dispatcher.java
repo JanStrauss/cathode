@@ -3,6 +3,9 @@ package eu.over9000.cathode;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
+import eu.over9000.cathode.data.Panel;
+import eu.over9000.cathode.data.PanelList;
 import eu.over9000.cathode.data.parameters.Parameter;
 import org.apache.http.*;
 import org.apache.http.client.HttpClient;
@@ -13,6 +16,7 @@ import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
 import org.apache.http.message.BasicHeader;
 
 import java.io.IOException;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,9 +26,12 @@ public class Dispatcher {
 	private final HttpClient HTTP_CLIENT;
 	private final Gson GSON = new GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES).create();
 	private final BasicResponseHandler RESPONSE_HANDLER = new BasicResponseHandler();
+	public UndocumentedDispatcher undocumented;
 
 
 	Dispatcher(final String clientID, final String authToken) {
+		undocumented = new UndocumentedDispatcher();
+
 		final PoolingHttpClientConnectionManager connectionManager = new PoolingHttpClientConnectionManager();
 		connectionManager.setMaxTotal(CONNECTION_COUNT);
 		connectionManager.setDefaultMaxPerRoute(CONNECTION_COUNT);
@@ -57,18 +64,19 @@ public class Dispatcher {
 
 	private <ResponseType> Result<ResponseType> performInternal(final String method, final Class<ResponseType> resultClass, final String path, final HttpEntity payload, final Parameter... parameters) {
 		try {
-			final String strResponse = getResponseString(method, path, payload, parameters);
+			final String baseUrl = String.join("/", Twitch.API_BASE_URL, path);
+
+			final String strResponse = getResponseString(method, baseUrl, payload, parameters);
 
 			final ResponseType objResponse = GSON.fromJson(strResponse, resultClass);
 
 			return new Result<>(objResponse);
-		} catch (final IOException e) {
+		} catch (final Exception e) {
 			return new Result<>(e);
 		}
 	}
 
-	private String getResponseString(final String method, final String path, final HttpEntity payload, final Parameter... parameters) throws IOException {
-		final String baseUrl = handleUrl(path);
+	private String getResponseString(final String method, final String baseUrl, final HttpEntity payload, final Parameter... parameters) throws IOException {
 
 		final RequestBuilder requestBuilder = RequestBuilder.create(method).setUri(baseUrl);
 
@@ -84,20 +92,13 @@ public class Dispatcher {
 		return RESPONSE_HANDLER.handleResponse(httpResponse);
 	}
 
-
-	public String __DEBUG__getStringResponse(final String path) {
+	public Result<String> getResponseRaw(final String url) {
 		try {
+			return new Result<>(getResponseString(HttpGet.METHOD_NAME, url, null));
 
-			return getResponseString(HttpGet.METHOD_NAME, path, null);
-
-		} catch (final IOException e) {
-			e.printStackTrace();
-			return null;
+		} catch (final Exception e) {
+			return new Result<>(e);
 		}
-	}
-
-	private String handleUrl(final String path) {
-		return String.join("/", Twitch.API_BASE_URL, path);
 	}
 
 	private void handleParameters(final RequestBuilder requestBuilder, final Parameter[] parameters) {
@@ -106,6 +107,25 @@ public class Dispatcher {
 				final List<NameValuePair> nameValuePairs = parameter.buildParamPairs();
 				nameValuePairs.forEach(requestBuilder::addParameter);
 			}
+		}
+	}
+
+	public class UndocumentedDispatcher {
+
+		public Result<PanelList> getPanels(final String channelName) {
+			final String url = "https://api.twitch.tv/api/channels/" + channelName + "/panels";
+			final Result<String> result = getResponseRaw(url);
+
+			if (result.isOk()) {
+				final Type panelsListType = new TypeToken<List<Panel>>() {
+				}.getType();
+
+				final List<Panel> panels = GSON.fromJson(result.getResultRaw(), panelsListType);
+
+				return new Result<>(new PanelList(panels));
+			}
+
+			return new Result<>(result.getErrorRaw());
 		}
 	}
 }

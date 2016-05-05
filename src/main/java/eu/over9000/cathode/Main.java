@@ -20,7 +20,9 @@ public class Main {
 		//System.out.println("##### ##### ##### ##### #####");
 		//tryCursorPagination(twitch);
 
-		tryChannels(twitch);
+		tryPanels(twitch);
+
+		//tryChannels(twitch);
 
 		//tryIngests(twitch);
 
@@ -39,6 +41,10 @@ public class Main {
 		//tryUsers(twitch);
 
 		//tryVideos(twitch);
+	}
+
+	private static void tryPanels(Twitch twitch) {
+		twitch.undocumented.getPanels("rocketbeanstv").print();
 	}
 
 	private static void tryChannels(final Twitch twitch) {

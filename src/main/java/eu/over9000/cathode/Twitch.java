@@ -20,6 +20,7 @@ public class Twitch {
 	public final Teams teams;
 	public final Users users;
 	public final Videos videos;
+	public final Undocumented undocumented;
 
 	public Twitch(final String clientID) {
 		this(clientID, null);
@@ -42,6 +43,7 @@ public class Twitch {
 		teams = new TeamsImpl(dispatcher);
 		users = new UsersImpl(dispatcher);
 		videos = new VideosImpl(dispatcher);
+		undocumented = new UndocumentedImpl(dispatcher);
 	}
 
 	public String getClientID() {
