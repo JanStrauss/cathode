@@ -1,5 +1,5 @@
 #Cathode
-twitch.tv API wrapper written for Java (8) based on apache-httpclient and gson.
+twitch.tv API wrapper written for Java 8 using on apache-httpclient and gson.
 
 ## Status
 Covers the whole API except for the feed stuff, not really tested atm. Also barely any documentation, will hopefully change soon.
@@ -13,4 +13,4 @@ See Main.java for usage examples, e.g.:
 Will print the 5 most popular games and their viewer number.
 
 ## Licence
-See LICENCE
+See [LICENCE](LICENCE)
