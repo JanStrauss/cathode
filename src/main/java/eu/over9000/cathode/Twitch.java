@@ -40,7 +40,7 @@ public class Twitch {
 		root = new RootImpl(dispatcher);
 		search = new SearchImpl(dispatcher);
 		streams = new StreamsImpl(dispatcher);
-		teams = null;
+		teams = new TeamsImpl(dispatcher);
 		users = null;
 		videos = null;
 

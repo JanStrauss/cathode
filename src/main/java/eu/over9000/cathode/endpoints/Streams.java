@@ -10,11 +10,11 @@ import eu.over9000.cathode.data.parameters.StreamsQuery;
 
 /**
  * <pre>
- * /streams                                    GET
- * /streams/:channel/                          GET
- * /streams/featured                           GET
- * /streams/followed                           GET
- * /streams/summary                            GET
+ * /streams                                    GET			getStream();
+ * /streams/:channel/                          GET			getStream(String channelName);
+ * /streams/featured                           GET			getFeatured(OffsetPagination pagination);
+ * /streams/followed                           GET			getFollowed();
+ * /streams/summary                            GET			getSummary();
  * </pre>
  */
 public interface Streams {

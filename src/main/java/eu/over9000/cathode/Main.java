@@ -32,10 +32,17 @@ public class Main {
 
 		//tryRoot(twitch);
 
-		trySearch(twitch);
+		//trySearch(twitch);
+
+		tryTeams(twitch);
 	}
 
-	private static void trySearch(Twitch twitch) {
+	private static void tryTeams(final Twitch twitch) {
+		twitch.teams.getTeam("esl").print();
+		twitch.teams.getTeams(new OffsetPagination(15)).print();
+	}
+
+	private static void trySearch(final Twitch twitch) {
 
 		twitch.search.getChannels(new SearchChannelOptions("forsen"), new OffsetPagination(10)).print();
 		twitch.search.getGames(new SearchGamesOptions("battlefield")).print();
@@ -43,12 +50,12 @@ public class Main {
 
 	}
 
-	private static void tryRoot(Twitch twitch) {
+	private static void tryRoot(final Twitch twitch) {
 		twitch.root.getRoot().print();
 	}
 
-	private static void tryGames(Twitch twitch) {
-		OffsetPagination p = new OffsetPagination(25);
+	private static void tryGames(final Twitch twitch) {
+		final OffsetPagination p = new OffsetPagination(25);
 		twitch.games.getTopGames(p).ifOk(list -> list.getTop().forEach(game -> System.out.println(game.getGame().getName() + " = " + game.getViewers())));
 	}
 
