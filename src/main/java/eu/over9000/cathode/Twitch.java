@@ -14,6 +14,7 @@ public class Twitch {
 	public final Feed feed;
 	public final Games games;
 	public final Ingests ingests;
+	public final Root root;
 	public final Streams streams;
 	public final Teams teams;
 	public final Users users;
@@ -35,6 +36,7 @@ public class Twitch {
 		feed = new FeedImpl(dispatcher);
 		games = new GamesImpl(dispatcher);
 		ingests = new IngestsImpl(dispatcher);
+		root = new RootImpl(dispatcher);
 		streams = new StreamsImpl(dispatcher);
 		teams = null;
 		users = null;

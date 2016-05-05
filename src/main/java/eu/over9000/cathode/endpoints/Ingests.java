@@ -5,7 +5,7 @@ import eu.over9000.cathode.data.IngestList;
 
 /**
  * <pre>
- * /ingests                                    GET
+ * /ingests                                    GET			getIngests();
  * </pre>
  */
 public interface Ingests {

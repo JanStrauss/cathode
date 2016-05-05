@@ -28,7 +28,13 @@ public class Main {
 
 		//tryFeed(twitch);
 
-		tryGames(twitch);
+		//tryGames(twitch);
+
+		tryRoot(twitch);
+	}
+
+	private static void tryRoot(Twitch twitch) {
+		twitch.root.getRoot().print();
 	}
 
 	private static void tryGames(Twitch twitch) {

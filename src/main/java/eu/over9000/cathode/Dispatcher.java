@@ -68,4 +68,28 @@ public class Dispatcher {
 			return new Result<>(e);
 		}
 	}
+
+
+	public String __DEBUG__getStringResponse(final String path) {
+		try {
+
+			final String baseUrl = String.join("/", Twitch.API_BASE_URL, path);
+
+			final RequestBuilder requestBuilder = RequestBuilder.get(baseUrl);
+			final HttpUriRequest request = requestBuilder.build();
+
+			final HttpResponse httpResponse;
+
+			httpResponse = HTTP_CLIENT.execute(request);
+
+			final String strResponse;
+
+			strResponse = RESPONSE_HANDLER.handleResponse(httpResponse);
+
+			return strResponse;
+		} catch (final IOException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
 }

@@ -6,7 +6,7 @@ import eu.over9000.cathode.data.parameters.OffsetPagination;
 
 /**
  * <pre>
- * /games/top                                  GET
+ * /games/top                                  GET			getTopGames(OffsetPagination pagination);
  * </pre>
  */
 public interface Games {
