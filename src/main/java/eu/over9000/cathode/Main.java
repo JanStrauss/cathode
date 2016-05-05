@@ -30,7 +30,17 @@ public class Main {
 
 		//tryGames(twitch);
 
-		tryRoot(twitch);
+		//tryRoot(twitch);
+
+		trySearch(twitch);
+	}
+
+	private static void trySearch(Twitch twitch) {
+
+		twitch.search.getChannels(new SearchChannelOptions("forsen"), new OffsetPagination(10)).print();
+		twitch.search.getGames(new SearchGamesOptions("battlefield")).print();
+		twitch.search.getStreams(new SearchStreamsOptions("previouslyrecorded"), new OffsetPagination(10)).print();
+
 	}
 
 	private static void tryRoot(Twitch twitch) {

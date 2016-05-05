@@ -16,6 +16,7 @@ public class Twitch {
 	public final Ingests ingests;
 	public final Root root;
 	public final Streams streams;
+	public final Search search;
 	public final Teams teams;
 	public final Users users;
 	public final Videos videos;
@@ -37,6 +38,7 @@ public class Twitch {
 		games = new GamesImpl(dispatcher);
 		ingests = new IngestsImpl(dispatcher);
 		root = new RootImpl(dispatcher);
+		search = new SearchImpl(dispatcher);
 		streams = new StreamsImpl(dispatcher);
 		teams = null;
 		users = null;
