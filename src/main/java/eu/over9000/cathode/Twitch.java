@@ -1,6 +1,8 @@
 package eu.over9000.cathode;
 
 import eu.over9000.cathode.endpoints.*;
+import eu.over9000.cathode.endpoints.additional.ImageUtil;
+import eu.over9000.cathode.endpoints.additional.Undocumented;
 import eu.over9000.cathode.endpoints.implementations.*;
 
 public class Twitch {
@@ -20,7 +22,9 @@ public class Twitch {
 	public final Teams teams;
 	public final Users users;
 	public final Videos videos;
+
 	public final Undocumented undocumented;
+	public final ImageUtil imageUtil;
 
 	public Twitch(final String clientID) {
 		this(clientID, null);
@@ -43,7 +47,9 @@ public class Twitch {
 		teams = new TeamsImpl(dispatcher);
 		users = new UsersImpl(dispatcher);
 		videos = new VideosImpl(dispatcher);
+
 		undocumented = new UndocumentedImpl(dispatcher);
+		imageUtil = new ImageUtilImpl(dispatcher);
 	}
 
 	public String getClientID() {

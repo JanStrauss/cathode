@@ -5,7 +5,12 @@ import eu.over9000.cathode.data.FollowList;
 import eu.over9000.cathode.data.Stream;
 import eu.over9000.cathode.data.StreamList;
 import eu.over9000.cathode.data.parameters.*;
+import javafx.embed.swing.SwingFXUtils;
+import javafx.scene.image.Image;
 
+import javax.imageio.ImageIO;
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 import java.util.function.Supplier;
 
@@ -20,7 +25,9 @@ public class Main {
 		//System.out.println("##### ##### ##### ##### #####");
 		//tryCursorPagination(twitch);
 
-		tryPanels(twitch);
+		tryImages(twitch);
+
+		//tryPanels(twitch);
 
 		//tryChannels(twitch);
 
@@ -41,6 +48,23 @@ public class Main {
 		//tryUsers(twitch);
 
 		//tryVideos(twitch);
+	}
+
+	private static void tryImages(Twitch twitch) {
+		Result<Image> x = twitch.imageUtil.getStreamPreview("beyondthesummit", ImageSize.LARGE_PREVIEW, Image::new);
+		Result<Image> y = twitch.imageUtil.getGameBox("Dota 2", ImageSize.LARGE_GAME_BOX, Image::new);
+		Result<Image> z = twitch.imageUtil.getGameLogo("League of Legends", ImageSize.LARGE_GAME_LOGO, Image::new);
+		Result<Image> w = twitch.imageUtil.getOther("https://static-cdn.jtvnw.net/jtv_user_pictures/beyondthesummit-profile_image-d3d31e2a3b0f1e0a-300x300.jpeg", Image::new);
+
+		try {
+			ImageIO.write(SwingFXUtils.fromFXImage(x.getResultRaw(), null), "png", new File("prev.png"));
+			ImageIO.write(SwingFXUtils.fromFXImage(y.getResultRaw(), null), "png", new File("box.png"));
+			ImageIO.write(SwingFXUtils.fromFXImage(z.getResultRaw(), null), "png", new File("logo.png"));
+			ImageIO.write(SwingFXUtils.fromFXImage(w.getResultRaw(), null), "png", new File("cl.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
 	}
 
 	private static void tryPanels(Twitch twitch) {

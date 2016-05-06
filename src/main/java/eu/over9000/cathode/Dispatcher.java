@@ -16,9 +16,11 @@ import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
 import org.apache.http.message.BasicHeader;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Function;
 
 public class Dispatcher {
 	private static final int CONNECTION_COUNT = 100;
@@ -107,6 +109,22 @@ public class Dispatcher {
 				final List<NameValuePair> nameValuePairs = parameter.buildParamPairs();
 				nameValuePairs.forEach(requestBuilder::addParameter);
 			}
+		}
+	}
+
+	public <ImageFormat> Result<ImageFormat> retrieveImage(final String url, final Function<InputStream, ImageFormat> converter) {
+		try {
+			System.out.println(url);
+			final RequestBuilder requestBuilder = RequestBuilder.get(url);
+			final HttpUriRequest request = requestBuilder.build();
+			final HttpResponse httpResponse = HTTP_CLIENT.execute(request);
+
+			final InputStream inputStream = httpResponse.getEntity().getContent();
+			final ImageFormat image = converter.apply(inputStream);
+			return new Result<>(image);
+
+		} catch (final Exception e) {
+			return new Result<>(e);
 		}
 	}
 
