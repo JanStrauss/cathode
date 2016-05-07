@@ -5,9 +5,6 @@ import eu.over9000.cathode.data.meta.PaginatedContainer;
 
 import java.util.List;
 
-/**
- * Created by Jan on 05.05.2016.
- */
 public class TopGameList implements PaginatedContainer<TopGame> {
 
 	@SerializedName("_total")

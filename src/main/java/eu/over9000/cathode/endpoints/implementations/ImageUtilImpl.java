@@ -32,7 +32,7 @@ public class ImageUtilImpl extends AbstractEndpoint implements ImageUtil {
 
 	@Override
 	public <ImageFormat> Result<ImageFormat> getStreamPreview(final String channelName, final ImageSize size, final Function<InputStream, ImageFormat> converter) {
-		return dispatcher.retrieveImage(constructUrl(STREAM_PREVIEW_TEMPLATE, channelName, size), converter);
+		return dispatcher.retrieveImage(constructUrl(STREAM_PREVIEW_TEMPLATE, channelName.toLowerCase(), size), converter);
 	}
 
 	@Override
