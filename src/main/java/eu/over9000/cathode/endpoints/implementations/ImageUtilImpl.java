@@ -1,6 +1,5 @@
 package eu.over9000.cathode.endpoints.implementations;
 
-import com.google.common.net.UrlEscapers;
 import eu.over9000.cathode.Dispatcher;
 import eu.over9000.cathode.Result;
 import eu.over9000.cathode.data.parameters.ImageSize;
@@ -41,7 +40,7 @@ public class ImageUtilImpl extends AbstractEndpoint implements ImageUtil {
 	}
 
 	private String constructUrl(final String template, final String title, final ImageSize size) {
-		final String titleEncoded = UrlEscapers.urlPathSegmentEscaper().escape(title);
+		final String titleEncoded = title.toLowerCase();
 		return MessageFormat.format(template, titleEncoded, size.getWidth(), size.getHeight());
 	}
 }
