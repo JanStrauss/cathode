@@ -12,5 +12,7 @@ See Main.java for usage examples, e.g.:
 ```
 Will print the 5 most popular games and their viewer number.
 
+cathode is also used by [Skadi](https://github.com/s1mplex/skadi).
+
 ## Licence
 See [LICENCE](LICENCE)
