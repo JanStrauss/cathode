@@ -1,8 +1,5 @@
-package eu.over9000.cathode.resources;
+package eu.over9000.cathode;
 
-import eu.over9000.cathode.PaginationUtility;
-import eu.over9000.cathode.Result;
-import eu.over9000.cathode.Twitch;
 import eu.over9000.cathode.data.*;
 import eu.over9000.cathode.data.parameters.*;
 import javafx.scene.image.Image;
@@ -14,7 +11,7 @@ import java.util.function.Supplier;
 
 public class CathodeTest {
 
-	private Twitch twitch;
+	private final Twitch twitch;
 
 	public CathodeTest() {
 		final String clientId = System.getenv("twitch_client_id");
@@ -63,16 +60,16 @@ public class CathodeTest {
 	@Test
 	public void tryVideos() {
 		final Result<VideoList> result = twitch.videos.getFollowed(new OffsetPagination(10));
-		//final Result<VideoList> result1 = twitch.videos.getTopVideos(new TopVideoOptions(), new OffsetPagination(10));
-		//final Result<Video> result2 = twitch.videos.getVideo("v64403799");
+		final Result<VideoList> result1 = twitch.videos.getTopVideos(new TopVideoOptions(), new OffsetPagination(10));
+		final Result<Video> result2 = twitch.videos.getVideo("v64403799");
 
 		result.print();
-		//result1.print();
-		//result2.print();
+		result1.print();
+		result2.print();
 
 		Assert.assertTrue(result.isOk());
-		//Assert.assertTrue(result1.isOk());
-		//Assert.assertTrue(result2.isOk());
+		Assert.assertTrue(result1.isOk());
+		Assert.assertTrue(result2.isOk());
 	}
 
 	@Test
@@ -231,6 +228,27 @@ public class CathodeTest {
 		q.handle(list -> list.forEach(stream -> System.out.println(stream.getChannel().getName())), Throwable::printStackTrace);
 
 		Assert.assertTrue(q.isOk());
+	}
+
+	@Test
+	public void tryStreams() {
+		final Result<FeaturedStreamList> result = twitch.streams.getFeatured(new OffsetPagination(5));
+		final Result<StreamList> result1 = twitch.streams.getFollowed(new OffsetPagination(5), new StreamTypeOption());
+		final Result<StreamBox> result2 = twitch.streams.getStream();
+		final Result<StreamSummary> result3 = twitch.streams.getSummary();
+		final Result<StreamBox> result4 = twitch.streams.getStream("forsenlol");
+
+		result.print();
+		result1.print();
+		result2.print();
+		result3.print();
+		result4.print();
+
+		Assert.assertTrue(result.isOk());
+		Assert.assertTrue(result1.isOk());
+		Assert.assertTrue(result2.isOk());
+		Assert.assertTrue(result3.isOk());
+		Assert.assertTrue(result4.isOk());
 	}
 
 }
