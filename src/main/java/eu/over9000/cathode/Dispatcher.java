@@ -97,8 +97,6 @@ public class Dispatcher {
 
 			final String strResponse = getResponseString(method, baseUrl, payload, parameters);
 
-			System.out.println(strResponse);
-
 			final ResponseType objResponse = GSON.fromJson(strResponse, resultClass);
 
 			return new Result<>(objResponse);
