@@ -13,7 +13,7 @@ Cathode is also used by [Skadi](https://github.com/s1mplex/skadi).
 
 ## Status
 Covers the whole API. Barely any documentation, will hopefully change soon.
-The endpoints of the API are accessible via the twitch object:
+The API resources are accessible via the twitch object:
 ```java
 public Channels channels;
 public Chat chat;
@@ -27,7 +27,7 @@ public Teams teams;
 public Users users;
 public Videos videos;
 ```
-Additionally two more endpoints are available:
+Additionally two resources are available:
 ```java
 public Undocumented undocumented;
 public ImageUtil imageUtil;

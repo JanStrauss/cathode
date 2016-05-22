@@ -22,10 +22,10 @@
 
 package eu.over9000.cathode;
 
-import eu.over9000.cathode.endpoints.*;
-import eu.over9000.cathode.endpoints.additional.ImageUtil;
-import eu.over9000.cathode.endpoints.additional.Undocumented;
-import eu.over9000.cathode.endpoints.implementations.*;
+import eu.over9000.cathode.resources.*;
+import eu.over9000.cathode.resources.additional.ImageUtil;
+import eu.over9000.cathode.resources.additional.Undocumented;
+import eu.over9000.cathode.resources.implementations.*;
 
 import java.net.URI;
 
