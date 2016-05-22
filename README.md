@@ -34,10 +34,5 @@ public ImageUtil imageUtil;
 ```
 These offer access to undocumented endpoints (atm only Panels) or respectively methods to directly retrieve images for a game, stream or other images (e.g. emotes)
 
-
-The feed endpoint currently only returns 404, so not tested.
-
-
-
 ## Licence
 MIT licence, see [LICENCE](LICENCE) file.
