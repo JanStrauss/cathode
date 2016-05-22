@@ -21,31 +21,31 @@ public class FeedImpl extends AbstractEndpoint implements Feed {
 
 	@Override
 	public Result<PostList> getPosts(final String channelName, final CursorPagination pagination) {
-		return dispatcher.performGet(PostList.class, Feed.PATH + "/" + channelName, pagination);
+		return dispatcher.performGet(PostList.class, Feed.PATH + "/" + channelName + "/posts", pagination);
 	}
 
 	@Override
 	public Result<PostBox> postPost(final String channelName, final PostOptions options) {
-		return dispatcher.performPost(PostBox.class, Feed.PATH + "/" + channelName, options == null ? null : new StringEntity(options.encode(), ContentType.APPLICATION_JSON));
+		return dispatcher.performPost(PostBox.class, Feed.PATH + "/" + channelName + "/posts", options == null ? null : new StringEntity(options.encode(), ContentType.APPLICATION_JSON));
 	}
 
 	@Override
-	public Result<Post> getPost(final String channelName, final long postId) {
-		return dispatcher.performGet(Post.class, Feed.PATH + "/" + channelName + "/" + postId);
+	public Result<Post> getPost(final String channelName, final String postId) {
+		return dispatcher.performGet(Post.class, Feed.PATH + "/" + channelName + "/posts/" + postId);
 	}
 
 	@Override
-	public Result<Void> deletePost(final String channelName, final long postId) {
-		return dispatcher.performDelete(Void.class, Feed.PATH + "/" + channelName + "/" + postId);
+	public Result<Void> deletePost(final String channelName, final String postId) {
+		return dispatcher.performDelete(Void.class, Feed.PATH + "/" + channelName + "/posts/" + postId);
 	}
 
 	@Override
-	public Result<Reaction> postReaction(final String channelName, final long postId, final ReactionOption option) {
-		return dispatcher.performPost(Reaction.class, Feed.PATH + "/" + channelName + "/" + postId, null, option);
+	public Result<Reaction> postReaction(final String channelName, final String postId, final ReactionOption option) {
+		return dispatcher.performPost(Reaction.class, Feed.PATH + "/" + channelName + "/posts/" + postId + "/reactions", null, option);
 	}
 
 	@Override
-	public Result<Void> deleteReaction(final String channelName, final long postId, final ReactionOption option) {
-		return dispatcher.performDelete(Void.class, Feed.PATH + "/" + channelName + "/" + postId, option);
+	public Result<Void> deleteReaction(final String channelName, final String postId, final ReactionOption option) {
+		return dispatcher.performDelete(Void.class, Feed.PATH + "/" + channelName + "/posts/" + postId + "/reactions", option);
 	}
 }

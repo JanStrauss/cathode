@@ -26,11 +26,11 @@ public interface Feed {
 
 	Result<PostBox> postPost(String channelName, PostOptions options);
 
-	Result<Post> getPost(String channelName, long postId);
+	Result<Post> getPost(String channelName, String postId);
 
-	Result<Void> deletePost(String channelName, long postId);
+	Result<Void> deletePost(String channelName, String postId);
 
-	Result<Reaction> postReaction(String channelName, long postId, ReactionOption option);
+	Result<Reaction> postReaction(String channelName, String postId, ReactionOption option);
 
-	Result<Void> deleteReaction(String channelName, long postId, ReactionOption option);
+	Result<Void> deleteReaction(String channelName, String postId, ReactionOption option);
 }

@@ -117,6 +117,8 @@ public class Dispatcher {
 
 		final HttpUriRequest request = requestBuilder.build();
 
+		System.out.println(request.getURI());
+
 		final HttpResponse httpResponse = HTTP_CLIENT.execute(request);
 		return RESPONSE_HANDLER.handleResponse(httpResponse);
 	}

@@ -150,11 +150,26 @@ public class CathodeTest {
 	public void tryFeed() {
 		final CursorPagination p = new CursorPagination(5);
 		final Result<PostList> result = twitch.feed.getPosts("sykpl3x", p);
-		final Result<Post> result1 = twitch.feed.getPost("sykpl3x", 1);
+		Assert.assertTrue(result.isOk());
+
+		final String id = result.getResultRaw().getPosts().get(0).getId();
+
+		final Result<Post> result1 = twitch.feed.getPost("sykpl3x", id);
+		Assert.assertTrue(result1.isOk());
+
 		final Result<PostBox> result2 = twitch.feed.postPost("sykpl3x", new PostOptions("ayayay"));
-		final Result<Void> result3 = twitch.feed.deletePost("sykpl3x", 2);
-		final Result<Reaction> result4 = twitch.feed.postReaction("sykpl3x", 1, new ReactionOption(25));
-		final Result<Void> result5 = twitch.feed.deleteReaction("sykpl3x", 1, new ReactionOption(25));
+		Assert.assertTrue(result2.isOk());
+
+		final String id_new = result2.getResultRaw().getPost().getId();
+
+		final Result<Reaction> result3 = twitch.feed.postReaction("sykpl3x", id_new, new ReactionOption(25));
+		Assert.assertTrue(result3.isOk());
+
+		final Result<Void> result4 = twitch.feed.deleteReaction("sykpl3x", id_new, new ReactionOption(25));
+		Assert.assertTrue(result4.isOk());
+
+		final Result<Void> result5 = twitch.feed.deletePost("sykpl3x", id_new);
+		Assert.assertTrue(result5.isOk());
 
 		result.print();
 		result1.print();
@@ -162,13 +177,10 @@ public class CathodeTest {
 		result3.print();
 		result4.print();
 		result5.print();
+	}
 
-		Assert.assertTrue(result.isOk());
-		Assert.assertTrue(result1.isOk());
-		Assert.assertTrue(result2.isOk());
-		Assert.assertTrue(result3.isOk());
-		Assert.assertTrue(result4.isOk());
-		Assert.assertTrue(result5.isOk());
+	public static void main(final String[] args) {
+
 	}
 
 	@Test
