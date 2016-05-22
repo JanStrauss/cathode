@@ -4,15 +4,12 @@ import eu.over9000.cathode.data.meta.PaginatedContainer;
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Jan on 04.05.2016.
- */
 public class CursorPagination extends Pagination {
 
-	private String cursor = "";
+	private String cursor = null;
 
 	public CursorPagination() {
 	}
@@ -33,7 +30,16 @@ public class CursorPagination extends Pagination {
 
 	@Override
 	public List<NameValuePair> buildParamPairs() {
-		return Arrays.asList(new BasicNameValuePair("limit", String.valueOf(limit)), new BasicNameValuePair("cursor", cursor));
+		final List<NameValuePair> result = new ArrayList<>();
+
+		if (limit != 0) {
+			result.add(new BasicNameValuePair("limit", String.valueOf(limit)));
+		}
+		if (cursor != null) {
+			result.add(new BasicNameValuePair("cursor", cursor));
+		}
+
+		return result;
 	}
 
 }

@@ -6,9 +6,6 @@ import org.apache.http.message.BasicNameValuePair;
 import java.util.Collections;
 import java.util.List;
 
-/**
- * Created by Jan on 04.05.2016.
- */
 public class Direction implements Parameter {
 
 	private enum Directions {ASC, DESC;}

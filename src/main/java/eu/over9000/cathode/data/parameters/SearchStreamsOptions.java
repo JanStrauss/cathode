@@ -6,9 +6,6 @@ import org.apache.http.message.BasicNameValuePair;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Jan on 05.05.2016.
- */
 public class SearchStreamsOptions implements Parameter {
 	private final String query;
 	private final Boolean hls;

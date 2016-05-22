@@ -11,9 +11,6 @@ import eu.over9000.cathode.data.parameters.SearchGamesOptions;
 import eu.over9000.cathode.data.parameters.SearchStreamsOptions;
 import eu.over9000.cathode.endpoints.Search;
 
-/**
- * Created by Jan on 05.05.2016.
- */
 public class SearchImpl extends AbstractEndpoint implements Search {
 
 	public SearchImpl(final Dispatcher dispatcher) {

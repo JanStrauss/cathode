@@ -6,9 +6,6 @@ import eu.over9000.cathode.data.TopGameList;
 import eu.over9000.cathode.data.parameters.OffsetPagination;
 import eu.over9000.cathode.endpoints.Games;
 
-/**
- * Created by Jan on 05.05.2016.
- */
 public class GamesImpl extends AbstractEndpoint implements Games {
 	public GamesImpl(final Dispatcher dispatcher) {
 		super(dispatcher);

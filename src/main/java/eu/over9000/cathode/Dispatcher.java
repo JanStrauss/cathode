@@ -28,6 +28,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import eu.over9000.cathode.data.Panel;
 import eu.over9000.cathode.data.PanelList;
+import eu.over9000.cathode.data.deserializers.ThumbnailListDeserializer;
 import eu.over9000.cathode.data.parameters.Parameter;
 import org.apache.http.*;
 import org.apache.http.client.HttpClient;
@@ -47,8 +48,12 @@ import java.util.function.Function;
 public class Dispatcher {
 	private static final int CONNECTION_COUNT = 100;
 
+	private final Gson GSON = new GsonBuilder().
+			setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES).
+			registerTypeAdapter(ThumbnailListDeserializer.THUMBNAIL_LIST_TYPE, new ThumbnailListDeserializer()).
+			create();
+
 	private final HttpClient HTTP_CLIENT;
-	private final Gson GSON = new GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES).create();
 	private final BasicResponseHandler RESPONSE_HANDLER = new BasicResponseHandler();
 	public UndocumentedDispatcher undocumented;
 
@@ -91,6 +96,8 @@ public class Dispatcher {
 			final String baseUrl = String.join("/", Twitch.API_BASE_URL, path);
 
 			final String strResponse = getResponseString(method, baseUrl, payload, parameters);
+
+			System.out.println(strResponse);
 
 			final ResponseType objResponse = GSON.fromJson(strResponse, resultClass);
 

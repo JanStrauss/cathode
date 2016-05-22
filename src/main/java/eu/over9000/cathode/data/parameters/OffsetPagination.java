@@ -7,9 +7,6 @@ import org.apache.http.message.BasicNameValuePair;
 import java.util.Arrays;
 import java.util.List;
 
-/**
- * Created by Jan on 04.05.2016.
- */
 public class OffsetPagination extends Pagination {
 
 	private long offset = 0;

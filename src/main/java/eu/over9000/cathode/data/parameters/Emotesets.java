@@ -7,9 +7,6 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-/**
- * Created by Jan on 05.05.2016.
- */
 public class Emotesets implements Parameter {
 
 	private final List<String> emoteSets;
