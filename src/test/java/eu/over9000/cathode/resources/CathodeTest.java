@@ -19,9 +19,6 @@ public class CathodeTest {
 	public CathodeTest() {
 		final String clientId = System.getenv("twitch_client_id");
 		final String authToken = System.getenv("twitch_auth_token");
-
-		System.out.println(System.getProperties().stringPropertyNames());
-
 		twitch = new Twitch(clientId, authToken);
 	}
 
@@ -177,10 +174,6 @@ public class CathodeTest {
 		result3.print();
 		result4.print();
 		result5.print();
-	}
-
-	public static void main(final String[] args) {
-
 	}
 
 	@Test
