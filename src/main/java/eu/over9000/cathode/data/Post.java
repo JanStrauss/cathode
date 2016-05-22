@@ -8,12 +8,12 @@ public class Post {
 	private final String id;
 	private final Date createdAt;
 	private final boolean deleted;
-	private final List<Object> emotes;
+	private final List<PostEmote> emotes;
 	private final Map<String, PostReaction> reactions;
 	private final String body;
 	private final User user;
 
-	public Post(final String id, final Date createdAt, final boolean deleted, final List<Object> emotes, final Map<String, PostReaction> reactions, final String body, final User user) {
+	public Post(final String id, final Date createdAt, final boolean deleted, final List<PostEmote> emotes, final Map<String, PostReaction> reactions, final String body, final User user) {
 		this.id = id;
 		this.createdAt = createdAt;
 		this.deleted = deleted;
@@ -48,7 +48,7 @@ public class Post {
 		return deleted;
 	}
 
-	public List<Object> getEmotes() {
+	public List<PostEmote> getEmotes() {
 		return emotes;
 	}
 
