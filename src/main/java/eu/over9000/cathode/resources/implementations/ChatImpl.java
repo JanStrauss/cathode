@@ -28,7 +28,7 @@ import eu.over9000.cathode.data.Badges;
 import eu.over9000.cathode.data.ChannelEmoticonList;
 import eu.over9000.cathode.data.EmoticonImages;
 import eu.over9000.cathode.data.EmoticonList;
-import eu.over9000.cathode.data.parameters.Emotesets;
+import eu.over9000.cathode.data.parameters.EmoteSets;
 import eu.over9000.cathode.resources.Chat;
 
 public class ChatImpl extends AbstractEndpoint implements Chat {
@@ -53,8 +53,8 @@ public class ChatImpl extends AbstractEndpoint implements Chat {
 	}
 
 	@Override
-	public Result<EmoticonImages> getEmoticonImages(final Emotesets emotesets) {
-		return dispatcher.performGet(EmoticonImages.class, Chat.PATH + "/emoticon_images", emotesets);
+	public Result<EmoticonImages> getEmoticonImages(final EmoteSets emoteSets) {
+		return dispatcher.performGet(EmoticonImages.class, Chat.PATH + "/emoticon_images", emoteSets);
 	}
 
 	@Override

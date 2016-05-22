@@ -24,9 +24,6 @@ package eu.over9000.cathode.data;
 
 import java.util.List;
 
-/**
- * Created by Jan on 05.05.2016.
- */
 public class EmoticonList {
 
 	private final List<Emoticon> emoticons;

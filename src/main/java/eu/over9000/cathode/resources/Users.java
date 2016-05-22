@@ -41,6 +41,7 @@ import eu.over9000.cathode.data.parameters.PutFollowsOptions;
  * /users/:user/follows/channels/:target		DELETE			deleteFollows(String userName, String targetName);
  * /users/:user/follows/channels/:target		GET				getFollows(String userName, String targetName);
  * /users/:user/subscriptions/:channel			GET				getSubscription(String userName, String channelName);
+ * /users/:user/emotes							GET				getEmotes(String userName);
  * </pre>
  */
 public interface Users {
@@ -66,6 +67,8 @@ public interface Users {
 	Result<Void> deleteFollows(String userName, String targetName);
 
 	Result<Subscription> getSubscription(String userName, String channelName);
+
+	Result<EmoticonImages> getEmotes(String userName);
 
 
 }

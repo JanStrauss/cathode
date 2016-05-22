@@ -82,18 +82,21 @@ public class CathodeTest {
 		final Result<Void> result2 = twitch.users.deleteBlock("sykpl3x", "teebeutel1222");
 		final Result<BlockList> result3 = twitch.users.getBlocks("sykpl3x");
 		final Result<FollowList> result4 = twitch.users.getFollows("sykpl3x", new OffsetPagination(), new Direction(), new GetFollowsSortBy());
+		final Result<EmoticonImages> result5 = twitch.users.getEmotes("sykpl3x");
 
 		result.print();
 		result1.print();
 		result2.print();
 		result3.print();
 		result4.print();
+		result5.print();
 
 		Assert.assertTrue(result.isOk());
 		Assert.assertTrue(result1.isOk());
 		Assert.assertTrue(result2.isOk());
 		Assert.assertTrue(result3.isOk());
 		Assert.assertTrue(result4.isOk());
+		Assert.assertTrue(result5.isOk());
 	}
 
 	@Test
@@ -181,7 +184,7 @@ public class CathodeTest {
 		final Result<Badges> result = twitch.chat.getBadges("forsenlol");
 		final Result<ChannelEmoticonList> result1 = twitch.chat.getEmoticons("forsenlol");
 		final Result<EmoticonList> result2 = twitch.chat.getEmoticons();
-		final Result<EmoticonImages> result3 = twitch.chat.getEmoticonImages(new Emotesets("128", "77", "5993"));
+		final Result<EmoticonImages> result3 = twitch.chat.getEmoticonImages(new EmoteSets("128", "77", "5993"));
 
 		result.print();
 		result1.print();

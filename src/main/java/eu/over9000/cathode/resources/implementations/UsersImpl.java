@@ -87,4 +87,9 @@ public class UsersImpl extends AbstractEndpoint implements Users {
 	public Result<Subscription> getSubscription(final String userName, final String channelName) {
 		return dispatcher.performGet(Subscription.class, Users.PATH + "/" + userName + "/subscriptions/" + channelName);
 	}
+
+	@Override
+	public Result<EmoticonImages> getEmotes(final String userName) {
+		return dispatcher.performGet(EmoticonImages.class, Users.PATH + "/" + userName + "/emotes");
+	}
 }

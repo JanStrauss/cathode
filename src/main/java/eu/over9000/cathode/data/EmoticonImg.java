@@ -22,9 +22,6 @@
 
 package eu.over9000.cathode.data;
 
-/**
- * Created by Jan on 05.05.2016.
- */
 public class EmoticonImg {
 	private final long emoticonSet;
 	private final long height;
