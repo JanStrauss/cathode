@@ -5,7 +5,7 @@
 
     <groupId>eu.over9000</groupId>
     <artifactId>cathode</artifactId>
-    <version>1.2-SNAPSHOT</version>
+    <version>1.1-SNAPSHOT</version>
     <name>cathode</name>
     <description>Twitch.tv API wrapper written in/for Java 8</description>
     <packaging>jar</packaging>
@@ -30,7 +30,7 @@
         <connection>scm:git:git@github.com:s1mpl3x/cathode.git</connection>
         <developerConnection>scm:git:git@github.com:s1mpl3x/cathode.git</developerConnection>
         <url>https://github.com/s1mpl3x/cathode</url>
-        <tag>HEAD</tag>
+        <tag>cathode-1.2</tag>
     </scm>
 
     <distributionManagement>
