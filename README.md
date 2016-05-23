@@ -17,8 +17,9 @@ Or see [releases](https://github.com/s1mpl3x/cathode/releases).
 
 Basic example that will print the 5 most popular games and their corresponding viewer number:
 ```java
-final Twitch twitch = new Twitch(CLIENT_ID, AUTH_TOKEN);
-twitch.games.getTopGames(new OffsetPagination(5)).ifOk(list -> list.getTop().forEach(game -> System.out.println(game.getGame().getName() + " = " + game.getViewers())));
+Twitch twitch = new Twitch(CLIENT_ID, AUTH_TOKEN);
+Result<TopGameList> result = twitch.games.getTopGames(new OffsetPagination(5));
+result.ifOk(list -> list.getTop().forEach(game -> System.out.println(game.getGame().getName() + " = " + game.getViewers())));
 ```
 You can check the unit tests for additional usage examples.
 Cathode is also used by [Skadi](https://github.com/s1mplex/skadi).
@@ -27,7 +28,7 @@ Cathode is also used by [Skadi](https://github.com/s1mplex/skadi).
 The twitch object is the central access point to the API resources (e.g. users, videos, channels, streams, chat). 
 
 ### Result class
-The endpoints of the resources implemented by methods that return a `Result<Type>` where Type is a POJO modelling the JSON response, e.g. a `Result<Channel>` for the `twitch.channels.getChannel(String channelName)` method. The Result class is a wrapper similar to Java's [Optional](https://docs.oracle.com/javase/8/docs/api/java/util/Optional.html). A Result can either be OK or can be in a ERROR state. There are different methods to access the wrapped object:
+The endpoints of the resources implemented by methods that return a `Result<Type>`. The Result class is a wrapper inspired by Rust's std::result::Result. A Result can either be OK (and contain an object of the wrapped class) or can be in a ERROR state (containing an exception). Using this approach to error handling allows for a more flexible API (see below) and is, imho, cleaner and easier to use. There are different methods to access the wrapped object:
 
 #### Callback
 You provide callbacks that are called if the Result is in the corresponding state
