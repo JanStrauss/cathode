@@ -20,7 +20,7 @@ Basic example that will print the 5 most popular games and their corresponding v
 final Twitch twitch = new Twitch(CLIENT_ID, AUTH_TOKEN);
 twitch.games.getTopGames(new OffsetPagination(5)).ifOk(list -> list.getTop().forEach(game -> System.out.println(game.getGame().getName() + " = " + game.getViewers())));
 ```
-You can check the unit tests for additional use examples.
+You can check the unit tests for additional usage examples.
 Cathode is also used by [Skadi](https://github.com/s1mplex/skadi).
 
 ### Structure
