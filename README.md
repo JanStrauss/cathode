@@ -1,7 +1,8 @@
 #Cathode
-[Twitch-API v3](https://github.com/justintv/Twitch-API) wrapper written for Java 8 based on apache-httpclient and gson.
 
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/eu.over9000/cathode/badge.svg)](https://maven-badges.herokuapp.com/maven-central/eu.over9000/cathode)
+
+[Twitch-API v3](https://github.com/justintv/Twitch-API) wrapper written for Java 8 based on apache-httpclient and gson.
 
 ## Usage
 Add Cathode as a dependency using Maven:
