@@ -29,15 +29,15 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-public class EmoteSetsBla implements Parameter {
+public class EmoteSets implements Parameter {
 
 	private final List<String> emoteSets;
 
-	public EmoteSetsBla(final String... emoteSet) {
+	public EmoteSets(final String... emoteSet) {
 		this.emoteSets = Arrays.asList(emoteSet);
 	}
 
-	public EmoteSetsBla(final List<String> emoteSets) {
+	public EmoteSets(final List<String> emoteSets) {
 		this.emoteSets = emoteSets;
 	}
 
