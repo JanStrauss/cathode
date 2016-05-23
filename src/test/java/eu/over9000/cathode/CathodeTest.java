@@ -13,9 +13,12 @@ public class CathodeTest {
 
 	private final Twitch twitch;
 
+	private final boolean authorized;
+
 	public CathodeTest() {
 		final String clientId = System.getenv("twitch_client_id");
 		final String authToken = System.getenv("twitch_auth_token");
+		authorized = clientId != null && authToken != null;
 		twitch = new Twitch(clientId, authToken);
 	}
 
@@ -51,8 +54,7 @@ public class CathodeTest {
 		result2.print();
 		result3.print();
 
-		Assert.assertTrue(result0.isOk());
-		Assert.assertTrue(result1.isOk());
+		Assert.assertTrue(result1.isOk() || !authorized);
 		Assert.assertTrue(result2.isOk());
 		Assert.assertTrue(result3.isOk());
 	}
@@ -67,7 +69,7 @@ public class CathodeTest {
 		result1.print();
 		result2.print();
 
-		Assert.assertTrue(result.isOk());
+		Assert.assertTrue(result.isOk() || !authorized);
 		Assert.assertTrue(result1.isOk());
 		Assert.assertTrue(result2.isOk());
 	}
@@ -88,12 +90,12 @@ public class CathodeTest {
 		result4.print();
 		result5.print();
 
-		Assert.assertTrue(result.isOk());
-		Assert.assertTrue(result1.isOk());
-		Assert.assertTrue(result2.isOk());
-		Assert.assertTrue(result3.isOk());
-		Assert.assertTrue(result4.isOk());
-		Assert.assertTrue(result5.isOk());
+		Assert.assertTrue(result.isOk() || !authorized);
+		Assert.assertTrue(result1.isOk() || !authorized);
+		Assert.assertTrue(result2.isOk() || !authorized);
+		Assert.assertTrue(result3.isOk() || !authorized);
+		Assert.assertTrue(result4.isOk() || !authorized);
+		Assert.assertTrue(result5.isOk() || !authorized);
 	}
 
 	@Test
@@ -147,26 +149,26 @@ public class CathodeTest {
 	public void tryFeed() {
 		final CursorPagination p = new CursorPagination(5);
 		final Result<PostList> result = twitch.feed.getPosts("sykpl3x", p);
-		Assert.assertTrue(result.isOk());
+		Assert.assertTrue(result.isOk() || !authorized);
 
 		final String id = result.getResultRaw().getPosts().get(0).getId();
 
 		final Result<Post> result1 = twitch.feed.getPost("sykpl3x", id);
-		Assert.assertTrue(result1.isOk());
+		Assert.assertTrue(result1.isOk() || !authorized);
 
 		final Result<PostBox> result2 = twitch.feed.postPost("sykpl3x", new PostOptions("ayayay"));
-		Assert.assertTrue(result2.isOk());
+		Assert.assertTrue(result2.isOk() || !authorized);
 
 		final String id_new = result2.getResultRaw().getPost().getId();
 
 		final Result<Reaction> result3 = twitch.feed.postReaction("sykpl3x", id_new, new ReactionOption(25));
-		Assert.assertTrue(result3.isOk());
+		Assert.assertTrue(result3.isOk() || !authorized);
 
 		final Result<Void> result4 = twitch.feed.deleteReaction("sykpl3x", id_new, new ReactionOption(25));
-		Assert.assertTrue(result4.isOk());
+		Assert.assertTrue(result4.isOk() || !authorized);
 
 		final Result<Void> result5 = twitch.feed.deletePost("sykpl3x", id_new);
-		Assert.assertTrue(result5.isOk());
+		Assert.assertTrue(result5.isOk() || !authorized);
 
 		result.print();
 		result1.print();
@@ -245,8 +247,8 @@ public class CathodeTest {
 		result4.print();
 
 		Assert.assertTrue(result.isOk());
-		Assert.assertTrue(result1.isOk());
-		Assert.assertTrue(result2.isOk());
+		Assert.assertTrue(result1.isOk() || !authorized);
+		Assert.assertTrue(result2.isOk() || !authorized);
 		Assert.assertTrue(result3.isOk());
 		Assert.assertTrue(result4.isOk());
 	}
