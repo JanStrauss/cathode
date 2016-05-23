@@ -30,6 +30,7 @@ public class Result<Type> {
 	private final State state;
 	private final Type value;
 	private final Throwable error;
+
 	public Result(final Type value) {
 		this.value = value;
 		this.state = State.OK;
@@ -46,16 +47,18 @@ public class Result<Type> {
 		return state == State.OK;
 	}
 
-	public void ifOk(final Consumer<Type> callback) {
+	public Result<Type> ifOk(final Consumer<Type> callback) {
 		if (isOk() && callback != null) {
 			callback.accept(value);
 		}
+		return this;
 	}
 
-	public void ifError(final Consumer<Throwable> callback) {
+	public Result<Type> ifError(final Consumer<Throwable> callback) {
 		if (!isOk() && callback != null) {
 			callback.accept(error);
 		}
+		return this;
 	}
 
 	public void handle(final Consumer<Type> callbackOk, final Consumer<Throwable> callbackError) {
