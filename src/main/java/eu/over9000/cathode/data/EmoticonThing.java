@@ -24,11 +24,11 @@ package eu.over9000.cathode.data;
 
 import java.util.List;
 
-public class EmoticonList {
+public class EmoticonThing {
 
 	private final List<Emoticon> emoticons;
 
-	public EmoticonList(final List<Emoticon> emoticons) {
+	public EmoticonThing (final List<Emoticon> emoticons) {
 		this.emoticons = emoticons;
 	}
 
