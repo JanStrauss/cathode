@@ -26,7 +26,7 @@ import eu.over9000.cathode.Result;
 import eu.over9000.cathode.data.Badges;
 import eu.over9000.cathode.data.ChannelEmoticonList;
 import eu.over9000.cathode.data.EmoticonImages;
-import eu.over9000.cathode.data.EmoticonThing;
+import eu.over9000.cathode.data.EmoticonList;
 import eu.over9000.cathode.data.parameters.EmoteSets;
 
 /**
@@ -47,7 +47,7 @@ public interface Chat {
 
 	Result<ChannelEmoticonList> getEmoticons(String channelName);
 
-	Result<EmoticonThing> getEmoticons();
+	Result<EmoticonList> getEmoticons();
 
 	Result<EmoticonImages> getEmoticonImages(EmoteSets emoteSets);
 
