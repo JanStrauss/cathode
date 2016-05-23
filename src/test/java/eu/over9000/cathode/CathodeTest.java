@@ -191,7 +191,7 @@ public class CathodeTest {
 		final Result<Badges> result = twitch.chat.getBadges("forsenlol");
 		final Result<ChannelEmoticonList> result1 = twitch.chat.getEmoticons("forsenlol");
 		final Result<EmoticonList> result2 = twitch.chat.getEmoticons();
-		final Result<EmoticonImages> result3 = twitch.chat.getEmoticonImages(new EmoteSets("128", "77", "5993"));
+		final Result<EmoticonImages> result3 = twitch.chat.getEmoticonImages(new EmoteSetsBla("128", "77", "5993"));
 
 		result.print();
 		result1.print();
