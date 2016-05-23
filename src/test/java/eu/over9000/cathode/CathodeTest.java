@@ -148,28 +148,35 @@ public class CathodeTest {
 
 	@Test
 	public void tryFeed() {
+
+		if (!authorized) {
+			Assert.assertTrue(true);
+			return;
+		}
+
+
 		final CursorPagination p = new CursorPagination(5);
 		final Result<PostList> result = twitch.feed.getPosts("sykpl3x", p);
-		Assert.assertTrue(result.isOk() || !authorized);
+		Assert.assertTrue(result.isOk());
 
 		final String id = result.getResultRaw().getPosts().get(0).getId();
 
 		final Result<Post> result1 = twitch.feed.getPost("sykpl3x", id);
-		Assert.assertTrue(result1.isOk() || !authorized);
+		Assert.assertTrue(result1.isOk());
 
 		final Result<PostBox> result2 = twitch.feed.postPost("sykpl3x", new PostOptions("ayayay"));
-		Assert.assertTrue(result2.isOk() || !authorized);
+		Assert.assertTrue(result2.isOk());
 
 		final String id_new = result2.getResultRaw().getPost().getId();
 
 		final Result<Reaction> result3 = twitch.feed.postReaction("sykpl3x", id_new, new ReactionOption(25));
-		Assert.assertTrue(result3.isOk() || !authorized);
+		Assert.assertTrue(result3.isOk());
 
 		final Result<Void> result4 = twitch.feed.deleteReaction("sykpl3x", id_new, new ReactionOption(25));
-		Assert.assertTrue(result4.isOk() || !authorized);
+		Assert.assertTrue(result4.isOk());
 
 		final Result<Void> result5 = twitch.feed.deletePost("sykpl3x", id_new);
-		Assert.assertTrue(result5.isOk() || !authorized);
+		Assert.assertTrue(result5.isOk());
 
 		result.print();
 		result1.print();
