@@ -54,9 +54,10 @@ public class CathodeTest {
 		result2.print();
 		result3.print();
 
+		Assert.assertTrue(result0.isOk() || !authorized);
 		Assert.assertTrue(result1.isOk() || !authorized);
-		Assert.assertTrue(result2.isOk());
-		Assert.assertTrue(result3.isOk());
+		Assert.assertTrue(result2.isOk() || !authorized);
+		Assert.assertTrue(result3.isOk() || !authorized);
 	}
 
 	@Test
